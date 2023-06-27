@@ -8,14 +8,13 @@ import { Tooltip, TooltipProps } from 'react-tippy'
 
 interface PreProps {
   children: React.ReactNode
-  className?: string
 }
 
-const Pre: React.FunctionComponent<PreProps> = ({ children, className }) => {
+const Pre: React.FunctionComponent<PreProps> = ({ children }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false)
   const preRef = useRef<HTMLPreElement>(null)
   const tooltipProps = {
-    title: isCopied ? 'Snippet copied✅' : 'Copy to clipboard',
+    title: 'Tersalin',
     interactive: true,
     hideOnClick: false
   } as TooltipProps
@@ -48,7 +47,6 @@ const Pre: React.FunctionComponent<PreProps> = ({ children, className }) => {
         <div
           className={twclsx('inline-flex items-center justify-start', 'px-4 md:px-8 h-full rounded-tl', 'bg-primary-4')}
         >
-          {className?.replace('language-', '').toUpperCase()}
         </div>
       </div>
 
@@ -63,7 +61,7 @@ const Pre: React.FunctionComponent<PreProps> = ({ children, className }) => {
         <Tooltip {...tooltipProps}>
           <Button
             onClick={copyToClipboard}
-            screenReaderText='Copy To Clipboard'
+            screenReaderText='Salin Ke Papan Klip'
             className={twclsx(
               'group relative',
               'inline-flex items-center justify-center',
