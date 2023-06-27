@@ -1,0 +1,127 @@
+---
+featured: true
+title: 'Cara Install PHPMyAdmin Di Android Menggunakan Termux'
+summary: 'PHPMyAdmin adalah alat yang digunakan untuk mengelola database yang dapat diakses melalui web.'
+published: '2023-05-21'
+author_name: 'Agcrismanto Budhi Praswastyka'
+author_image: '/favicon.ico'
+thumbnail: '/phpmyadmin.png'
+tags: ['PHPMyAdmin', 'Termux']
+keywords: ['Termux', 'PHPMyAdmin', 'MariaDB']
+---
+## Unduh Termux
+- Buka halaman unduh <a href="https://f-droid.org/en/packages/com.termux/" target="_blank">Termux</a> di F-Droid. Scroll ke bawah untuk mencari aplikasi Termux terbaru, atau <a href="https://f-droid.org/repo/com.termux_118.apk" target="_blank">klik di sini</a> untuk mengunduh Versi 0.118.0 (118) yang diperbarui pada 11 Januari 2022.
+
+> Termux sudah tidak dapat diunduh di Google Play Store. F-Droid merupakan repositori resmi dari Termux, atau kalian bisa mengakses repositori Termux di <a href="https://github.com/termux/termux-app/releases" target="_blank">Github</a>.
+
+---
+## Instalasi Apache Web Server dan PHP
+- Buka Termux dan ketikkan perintah berikut:
+
+```bash
+pkg install git -y && 
+cd ~/ && 
+git clone https://github.com/agcrisbp/apache-termux.git && 
+cd ~/apache-termux && 
+bash setup && 
+cd ~/ && 
+rm -rf apache-termux
+```
+
+- Jika muncul perintah:
+```bash
+Do you want to `continue`? [Y/n]
+```
+- Ketik **Y**, lalu Enter. Tunggu hingga proses instalasi selesai.
+
+### Pengujian
+- Untuk memaksimalkan tampilan dari PHP, ketikkan perintah berikut:
+```bash
+echo "<?php phpinfo();?>" > /sdcard/htdocs/index.php
+```
+
+---
+## Instalasi Database MySQL Menggunakan MariaDB
+- Pertama update dan upgrade terlebih dulu package yang ada di Termux:
+```bash
+apt update && apt upgrade -y
+```
+
+### Instalasi MariaDB
+- Ketik perintah di bawah ini:
+```bash 
+pkg install mariadb -y
+```
+- Tunggu hingga selesai, lalu mulai server `mysqld_safe`:
+```bash
+mysqld_safe -u root &
+```
+- Memulai MariaDB:
+```bash
+mysql -u root
+```
+- Memuat ulang tabel menggunakan perintah FLUSH PRIVILEGES.
+```bash
+FLUSH PRIVILEGES;
+```
+- Mengatur Kata Sandi:
+```bash
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Masukkan_Kata_Sandi';
+```
+- Ubah `Masukkan_Kata_Sandi` dengan Kata Sandi yang Anda inginkan.
+
+---
+## Instalasi PHPMyAdmin
+- Pertama, install terlebih dahulu `wget` dan `nano` menggunakan perintah:
+```bash
+pkg install wget && pkg install nano -y
+```
+- Masuk ke folder `htdocs`.
+```bash
+cd /sdcard/htdocs/
+```
+- Lalu unduh file PHPMyAdmin.
+```bash
+wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip
+```
+- Unzip file.
+```bash
+unzip phpMyAdmin-5.2.1-all-languages.zip
+```
+- Tunggu hingga proses selesai, lalu ubah nama folder tersebut.
+```bash
+mv phpMyAdmin-5.2.1-all-languages phpmyadmin
+```
+
+### Konfigurasi
+- Pertama masuk ke direktori `phpmyadmin`.
+```bash
+cd phpmyadmin
+```
+- Edit file konfigurasi.
+```bash
+nano config.sample.inc.php
+```
+- Gulir ke bawah dan cari pengaturan host yang berisi:
+```bash
+/* Server parameters */
+$cfg['Servers'][$i]['host'] = 'localhost';
+```
+- Ubah value `localhost` menjadi `127.0.0.1`, seperti berikut:
+```bash
+$cfg['Servers'][$i]['host'] = '127.0.0.1';
+```
+- Lalu simpan perubahan dengan menekan tombol `CTRL` + `O` + `Enter` dan keluar dari mode editor menggunakan `CTRL` + `X` + `Enter`.
+- Terakhir ubah nama file `config.sample.inc.php`.
+```bash
+mv config.sample.inc.php config.inc.php
+```
+
+---
+## Memulai PHPMyAdmin
+- Ketikkan perintah berikut untuk memulai PHP:
+```bash
+apachectl
+```
+- Buka browser dan masuk ke halaman <a href="http://localhost:8080/phpmyadmin" target="_blank">localhost:8080/phpmyadmin</a>.
+- Lalu masukkan **Nama Pengguna**: `root` dengan Kata Sandi yang sudah Anda buat sebelumnya.
