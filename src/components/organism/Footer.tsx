@@ -15,7 +15,7 @@ const Footer = () => {
       </section>
       <section className='mt-10'>
         <p className='text-sm'>
-          &copy; 2022 - {new Date().getFullYear()} {ownwer}
+          &copy; {new Date().getFullYear()} {ownwer}
         </p>
       </section>
     </footer>
