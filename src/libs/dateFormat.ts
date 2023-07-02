@@ -21,7 +21,8 @@ type DateFormat = (date: string, locale?: LocaleDateFormat, config?: Intl.DateTi
  * @returns
  */
 export const dateFormat: DateFormat = (date, locale, config) => {
-  return new Intl.DateTimeFormat(locale ?? 'en-US', config ?? { dateStyle: 'medium' }).format(new Date(date))
+  return new Intl.DateTimeFormat(locale ?? 'e
+  id-ID', config ?? { dateStyle: 'medium' }).format(new Date(date))
 }
 
 export const dateStringToISO = (date: string) => new Date(date).toISOString()
