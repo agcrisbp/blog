@@ -7,6 +7,7 @@ import { AnimatePresence, LazyMotion, Variants, domAnimation, m } from 'framer-m
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import 'react-tippy/dist/tippy.css'
+import { Analytics } from '@vercel/analytics/react';
 
 const v: Variants = {
   hidden: {
@@ -42,6 +43,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             }}
           >
             <Component {...pageProps} />
+            <Analytics />
             <Footer />
           </m.div>
         </AnimatePresence>
