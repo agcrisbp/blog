@@ -38,8 +38,8 @@ export const generateMetaDataBlog = (data: MetaData): CustomSeoProps => {
     twitter: {
       cardType: 'summary_large_image',
       // TODO: Change to your Tiwetter username
-      site: '@john_doe',
-      handle: '@john_doe'
+      site: '@agcrisbp',
+      handle: '@agcrisbp'
     },
     additionalMetaTags: [
       {

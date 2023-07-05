@@ -16,7 +16,7 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ blogs = [] }) => {
   const meta = {
-    title: 'Selamat Datang',
+    title: 'Tulisan Agcrismanto Budhi Praswastyka',
     template: 'Tulisan Agcrismanto Budhi Praswastyka',
     description: `Perkenalkan, nama saya Agcrismanto Budhi Praswastyka, saya adalah seorang programmer yang berfokus pada bidang Cybersecurity dan Web Developer.`,
     openGraph: {
