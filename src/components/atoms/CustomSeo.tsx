@@ -8,7 +8,7 @@ export interface CustomSeoProps extends NextSeoProps {
  * It takes a custom Seo component, extended from next-seo, and returns a `NextSeo component`
  * @returns The NextSeo component is being returned
  */
-const CustomSeo: React.FunctionComponent<CustomSeoProps> = ({ template, ...props }) => {
+const CustomSeo: React.FunctionComponent<CustomSeoProps> = ({ ...props }) => {
   // if there is no template provided, use the default template which is your Name
   // if you pass title = "next admin" and template = "gakidomo"
   // the result would be = "next admin — gakidomo" otherwise it would be = "next admin — Next.js App"
