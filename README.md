@@ -19,4 +19,4 @@
 
 ## License
 
-MIT
+[MIT](/LICENSE)
