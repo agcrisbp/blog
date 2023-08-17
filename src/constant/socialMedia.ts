@@ -5,8 +5,8 @@ export interface SocialMediaProps {
 
 export const socialMedia: Array<SocialMediaProps> = [
   {
-    children: 'Github',
-    href: 'https://github.com/agcrisbp?tab=repositories'
+    children: 'About',
+    href: 'https://about.agcrisbp.my.id'
   },
   {
     children: 'Twitter',
