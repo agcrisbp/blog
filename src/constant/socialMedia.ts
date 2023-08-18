@@ -5,7 +5,7 @@ export interface SocialMediaProps {
 
 export const socialMedia: Array<SocialMediaProps> = [
   {
-    children: 'About',
+    children: 'Tentang Penulis',
     href: 'https://about.agcrisbp.my.id'
   },
   {
