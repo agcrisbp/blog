@@ -6,7 +6,7 @@ export interface SocialMediaProps {
 export const socialMedia: Array<SocialMediaProps> = [
   {
     children: 'Tentang Penulis',
-    href: 'https://about.agcrisbp.my.id'
+    href: 'https://agcrisbp.my.id'
   },
   {
     children: 'Twitter',
