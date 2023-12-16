@@ -10,7 +10,7 @@ export const socialMedia: Array<SocialMediaProps> = [
   },
   {
     children: 'Twitter',
-    href: 'https://twitter.com/agcrisbp'
+    href: 'https://twitter.com/crisminolog'
   },
   {
     children: 'Linkedin',
