@@ -5,15 +5,15 @@ export interface SocialMediaProps {
 
 export const socialMedia: Array<SocialMediaProps> = [
   {
-    children: 'Tentang Penulis',
+    children: 'Situs Utamas',
     href: 'https://agcrisbp.my.id'
   },
   {
-    children: 'Twitter',
-    href: 'https://twitter.com/crisminolog'
+    children: 'LinkedIn',
+    href: 'https://linkedin.aghea.site'
   },
   {
-    children: 'Linkedin',
-    href: 'https://linkedin.com/in/agcrisbp'
+    children: 'Kontak',
+    href: 'https://contact.aghea.site'
   }
 ]
