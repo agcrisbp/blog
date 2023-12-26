@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://twitter.com/agcrisbp">
+  <a href="https://twitter.com/crisminolog">
   <img src="public/twitter-badge.svg" alt="Follow me on Twitter"/>
 </a>
   <a href="https://saweria.co/agcrisbp">
