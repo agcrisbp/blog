@@ -22,7 +22,7 @@ const HeroWithPhoto: React.FunctionComponent<HeroProps> = (props) => {
       >
         <h1 className={twclsx('text-4xl md:text-5xl')}>{props.title}</h1>
         <figure className={twclsx('relative', 'w-20 h-20 md:w-24 md:h-24')}>
-          <CustomImage src={props.image} className={twclsx('rounded-3xl')} alt={props.imageAlt} />
+          <CustomImage src={props.image} className={twclsx('rounded-3xl')} alt={props.imageAlt} display='intrinsic' />
         </figure>
       </div>
       <p className={twclsx('max-w-prose')}>{props.description}</p>
