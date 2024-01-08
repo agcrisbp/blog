@@ -12,9 +12,10 @@ import { Blog } from 'next-starter-blog'
 
 interface HomeProps {
   blogs: Array<Blog>
+  latestPost: Array<Blog>
 }
 
-const Home: NextPage<HomeProps> = ({ blogs = [] }) => {
+const Home: NextPage<HomeProps> = ({ latestPost = [], blogs = [] }) => {
   const meta = {
     title: 'Tulisan Agcrismanto Budhi Praswastyka',
     template: 'Tulisan Agcrismanto Budhi Praswastyka',
@@ -39,7 +40,7 @@ const Home: NextPage<HomeProps> = ({ blogs = [] }) => {
         </p>
       </HeroWithPhoto>
 
-      <BlogList blogs={blogs} title='Tulisan Terbaru'>
+      <BlogList blogs={latestPost} title='Tulisan Terbaru'>
         <UnstyledLink
           href='/posts'
           className={twclsx(
@@ -67,7 +68,16 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      blogs: blogs.map((b) => ({ ...b.data, slug: b.slug })).filter((b) => b.featured)
+      blogs: blogs.map((b) => ({ ...b.data, slug: b.slug })).filter((b) => b.featured),
+      latestPost: blogs
+        // map the blogs and add slug property,
+        .map((a) => ({ ...a.data, slug: a.slug }))
+        // sort descending by date
+        .sort((b, a) =>
+          new Date(a.published) > new Date(a.published) ? 1 : new Date(a.published) < new Date(b.published) ? -1 : 0
+        )
+        // cut the first 3 and so on, leave only 2 latest post
+        .slice(0, 3),
     }
   }
 }
