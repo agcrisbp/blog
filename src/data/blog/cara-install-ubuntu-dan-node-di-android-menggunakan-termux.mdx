@@ -1,0 +1,85 @@
+---
+featured: true
+title: 'Cara Install Ubuntu & Node Menggunakan Termux di Android'
+summary: 'Ubuntu merupakan salah satu distribusi Linux yang berbasis Debian.'
+published: '2024-01-09'
+author_name: 'Agcrismanto Budhi Praswastyka'
+author_image: '/favicon.ico'
+thumbnail: '/termux.jpg'
+tags: ['Ubuntu', 'Ubuntu22', 'Termux', 'Node']
+keywords: ['Termux', 'Ubuntu', 'Ubuntu22', 'Node', 'NodeJS']
+---
+## Unduh Termux
+- Buka halaman unduh <a href="https://aghea.site/termux" target="_blank">Termux</a> di F-Droid. Scroll ke bawah untuk mencari aplikasi Termux terbaru, atau <a href="https://aghea.site/termuxdl" target="_blank">klik di sini</a> untuk mengunduh Versi 0.118.0 (118) yang diperbarui pada 11 Januari 2022.
+
+> Termux sudah tidak dapat diunduh di Google Play Store. F-Droid merupakan repositori resmi dari Termux, atau kalian bisa mengakses repositori Termux di <a href="https://github.com/termux/termux-app/releases" target="_blank">Github</a>.
+
+---
+
+## Unduh Ubuntu22
+
+```bash
+pkg update -y && pkg install wget curl proot tar -y && wget https://raw.githubusercontent.com/agcrisbp/LinuxAndroid/master/Installer/Ubuntu22/ubuntu22.sh -O ubuntu22.sh && chmod +x ubuntu22.sh && bash ubuntu22.sh
+```
+
+- Untuk membuka kembali Ubuntu setelah keluar dari Termux, cukup masukkan perintah berikut:
+```bash
+./start-ubuntu22.sh
+```
+
+- Jangan lupa untuk memperbarui modul-modul Ubuntu menggunakan perintah:
+```bash
+apt update && apt upgrade
+```
+
+---
+
+## Instal NVM (Node Version Manager)
+- Pertama, kamu perlu menginstal `curl` jika belum terinstal otomatis pada saat melakukan penginstalan Ubuntu.
+
+```bash
+apt install curl -y
+```
+
+- Lalu unduh NVM menggunakan curl. Ketika kamu menjalankan perintah khusus ini, curl akan mengunduh skrip instalasi NVM. Setelah itu, bash mengeksekusi skrip yang sama untuk menginstal NVM.
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+---
+
+## Aktivasi NVM
+```bash
+source ~/.bashrc
+```
+
+---
+
+## Install Node
+
+```bash
+nvm install --lts
+```
+
+- Node versi terbaru telah terinstal, atau gunakan perintah di bawah ini untuk memastikan versi Node yang baru saja kamu instal:
+
+```bash
+node -v
+```
+
+---
+
+## Ubah Node Default
+
+- Jika sudah yakin dengan versi dari Node yang kamu instal, kamu perlu mengatur versi default dari NVM agar dapat digunakan secara default kapan pun kamu membutuhkannya. Kamu dapat menggunakan perintah di bawah ini untuk melakukannya. Pastikan untuk mengubah versinya ke versi yang sama persis dengan versi yang telah kamu instal.
+
+```bash
+nvm use --lts
+```
+
+- Jika versi LTS kamu adalah 24.1.2, maka gunakan perintah di bawah ini:
+
+```bash
+nvm alias default 24.1.2
+```
