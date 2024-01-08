@@ -16,11 +16,10 @@ const meta = {
 }
 
 interface BlogPageProps {
-  latestPost: Array<Blog>
   allPost: Array<Blog>
 }
 
-const BlogPage: NextPage<BlogPageProps> = ({ latestPost = [], allPost = [] }) => {
+const BlogPage: NextPage<BlogPageProps> = ({ allPost = [] }) => {
   const { query, handleChange, filteredBlog } = useSearchBlogQuery(allPost)
 
   return (

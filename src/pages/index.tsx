@@ -11,11 +11,10 @@ import type { GetStaticProps, NextPage } from 'next'
 import { Blog } from 'next-starter-blog'
 
 interface HomeProps {
-  blogs: Array<Blog>
   latestPost: Array<Blog>
 }
 
-const Home: NextPage<HomeProps> = ({ latestPost = [], blogs = [] }) => {
+const Home: NextPage<HomeProps> = ({ latestPost = [] }) => {
   const meta = {
     title: 'Tulisan Agcrismanto Budhi Praswastyka',
     template: 'Tulisan Agcrismanto Budhi Praswastyka',
@@ -68,7 +67,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      blogs: blogs.map((b) => ({ ...b.data, slug: b.slug })).filter((b) => b.featured),
       latestPost: blogs
         // map the blogs and add slug property,
         .map((a) => ({ ...a.data, slug: a.slug }))
