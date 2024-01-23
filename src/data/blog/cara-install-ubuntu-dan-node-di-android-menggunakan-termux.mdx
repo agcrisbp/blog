@@ -1,13 +1,13 @@
 ---
 featured: true
-title: 'Cara Install Ubuntu & Node Menggunakan Termux di Android'
+title: 'Cara Install Linux Ubuntu & Node Menggunakan Termux di Android'
 summary: 'Ubuntu merupakan sistem operasi distribusi Linux (atau sering dikenal sebagai “distro”) berbasis Debian dan kaya akan fitur di dalamnya. Sistem operasi Ubuntu bersifat open-source sehingga bisa digunakan oleh siapa saja secara gratis.'
 published: '2024-01-09'
 author_name: 'Agcrismanto Budhi Praswastyka'
 author_image: '/favicon.ico'
 thumbnail: '/ubuntu.webp'
-tags: ['Ubuntu', 'Ubuntu22', 'Termux', 'Node', 'Android']
-keywords: ['Termux', 'Ubuntu', 'Ubuntu22', 'Node', 'NodeJS', 'Android']
+tags: ['Ubuntu', 'Ubuntu 23.10', 'Termux', 'Node', 'Android']
+keywords: ['Termux', 'Ubuntu', 'Ubuntu 23.10', 'Node', 'NodeJS', 'Android']
 ---
 ## Unduh Termux
 - Buka halaman unduh <a href="https://aghea.site/termux" target="_blank">Termux</a> di F-Droid. Scroll ke bawah untuk mencari aplikasi Termux terbaru, atau <a href="https://aghea.site/termuxdl" target="_blank">klik di sini</a> untuk mengunduh Versi 0.118.0 (118) yang diperbarui pada 11 Januari 2022.
@@ -16,15 +16,12 @@ keywords: ['Termux', 'Ubuntu', 'Ubuntu22', 'Node', 'NodeJS', 'Android']
 
 ---
 
-## Unduh Ubuntu22
+## Unduh Ubuntu 23.10
 
 ```bash
-pkg update -y && pkg upgrade -y && pkg install wget curl proot tar -y && wget https://raw.githubusercontent.com/agcrisbp/LinuxAndroid/master/Installer/Ubuntu22/ubuntu22.sh -O ubuntu22.sh && chmod +x ubuntu22.sh && bash ubuntu22.sh
-```
-
-- Untuk membuka kembali Ubuntu setelah keluar dari Termux, cukup masukkan perintah berikut:
-```bash
-./start-ubuntu22.sh
+yes | pkg up
+curl https://raw.githubusercontent.com/agcrisbp/LinuxAndroid/main/install.sh >> install.sh
+bash install.sh
 ```
 
 - Jangan lupa untuk memperbarui modul-modul Ubuntu menggunakan perintah:
@@ -34,11 +31,72 @@ apt update && apt upgrade
 
 ---
 
+## Menambah User Baru
+
+```bash
+proot-distro login ubuntu
+```
+
+- Tambahkan user:
+
+```bash
+adduser Username
+```
+
+- Izin akses root:
+
+```bash
+sudo visudo
+```
+
+- Tambahkan baris baru tepat di bawah `root    ALL=(ALL:ALL) ALL`:
+
+```bash
+Username    ALL=(ALL:ALL) ALL
+```
+
+- Tambahkan akses login baru:
+
+```bash
+echo "proot-distro login --user Username ubuntu" >> $PREFIX/bin/Username
+chmod +x $PREFIX/bin/Username
+rm $CHROOT/root/.bashrc
+```
+
+> Ubah semua `Username` dengan nama yang kamu inginkan. Hal ini untuk mempermudah login hanya dengan `Username` tanpa harus menulis `proot-distro login ubuntu`.
+
+---
+
+## Mengubah Bahasa ke Indonesia
+
+- Unduh paket Bahasa Indonesia:
+
+```bash
+sudo apt-get install language-pack-id
+```
+
+- Ubah environment:
+
+```bash
+sudo nano /etc/environment
+```bash
+
+- Ubah `LANG=en_EN.UTF-8` dengan kode berikut:
+
+```bash
+LANG=id_ID.UTF-8
+LC_TIME=id_ID.UTF-8
+```
+
+- Mulai ulang terminal.
+
+---
+
 ## Instal NVM (Node Version Manager)
 - Pertama, kamu perlu menginstal `curl` jika belum terinstal otomatis pada saat melakukan penginstalan Ubuntu.
 
 ```bash
-apt install curl -y
+sudo apt install curl -y
 ```
 
 - Lalu unduh NVM menggunakan curl. Ketika kamu menjalankan perintah khusus ini, curl akan mengunduh skrip instalasi NVM. Setelah itu, bash mengeksekusi skrip yang sama untuk menginstal NVM.
