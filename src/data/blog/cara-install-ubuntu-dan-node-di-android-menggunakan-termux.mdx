@@ -9,10 +9,18 @@ thumbnail: '/ubuntu.webp'
 tags: ['Ubuntu', 'Ubuntu 23.10', 'Termux', 'Node', 'Android']
 keywords: ['Termux', 'Ubuntu', 'Ubuntu 23.10', 'Node', 'NodeJS', 'Android']
 ---
+
 ## Unduh Termux
+
 - Buka halaman unduh <a href="https://aghea.site/termux" target="_blank">Termux</a> di F-Droid. Scroll ke bawah untuk mencari aplikasi Termux terbaru, atau <a href="https://aghea.site/termuxdl" target="_blank">klik di sini</a> untuk mengunduh Versi 0.118.0 (118) yang diperbarui pada 11 Januari 2022.
 
 > Termux sudah tidak dapat diunduh di Google Play Store. F-Droid merupakan repositori resmi dari Termux, atau kalian bisa mengakses repositori Termux di <a href="https://github.com/termux/termux-app/releases" target="_blank">Github</a>.
+
+---
+
+## Unduh AVNC
+
+- AVNC digunakan untuk mengakses GUI Ubuntu: [Unduh AVNC](https://play.google.com/store/apps/details?id=com.gaurav.avnc].
 
 ---
 
@@ -42,6 +50,8 @@ proot-distro login ubuntu
 ```bash
 adduser Username
 ```
+
+> CATATAN! Kamu harus mengingat passwordmu untuk [mengakses Ubuntu](#akses-ubuntu) nantinya.
 
 - Izin akses root:
 
@@ -88,7 +98,19 @@ LANG=id_ID.UTF-8
 LC_TIME=id_ID.UTF-8
 ```
 
-- Mulai ulang terminal.
+- Mulai ulang Termux.
+
+---
+
+## Akses Ubuntu
+
+- Buka AVNC, atur seperti berikut:
+
+```bash
+Host: localhost
+Port: 1
+
+- Isi `Username` dan `Password` sesuai dengan yang sudah kamu buat.
 
 ---
 
