@@ -6,14 +6,14 @@ export interface SocialMediaProps {
 export const socialMedia: Array<SocialMediaProps> = [
   {
     children: 'Situs Utama',
-    href: 'https://agcrisbp.my.id'
+    href: 'https://aghea.vercel.app'
   },
   {
     children: 'LinkedIn',
-    href: 'https://linkedin.aghea.site'
+    href: 'https://aghea.vercel.app/linkedin'
   },
   {
     children: 'Kontak',
-    href: 'https://contact.aghea.site'
+    href: 'https://aghea.vercel.app/contact'
   }
 ]
