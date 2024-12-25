@@ -1,0 +1,116 @@
+---
+featured: true
+title: 'Cara Install Kali Linux NetHunter Menggunakan Termux di Android'
+summary: 'Kali Linux NetHunter Rootless adalah versi Kali Linux yang dirancang untuk perangkat Android tanpa memerlukan akses root.'
+published: '2024-12-25'
+author_name: 'Agcrismanto Budhi Praswastyka'
+author_image: '/favicon.ico'
+thumbnail: '/NH-Rootless.png'
+tags: ['Kali Linux', 'NetHunter', 'Linux', 'Termux', 'Android']
+keywords: ['Kali Linux', 'NetHunter', 'Linux', 'Node', 'Termux', 'Android']
+---
+
+## Unduh Termux
+- Buka halaman unduh <a href="https://aghea.site/termux" target="_blank">Termux</a> di F-Droid. Scroll ke bawah untuk mencari aplikasi Termux terbaru, atau <a href="https://aghea.site/termuxdl" target="_blank">klik di sini</a> untuk mengunduh Versi 0.118.0 (118) yang diperbarui pada 11 Januari 2022.
+
+> Termux sudah dapat diunduh di [Google Play Store](https://play.google.com/store/apps/details?id=com.termux) lagi, atau kalian bisa mengakses repositori Termux di <a href="https://github.com/termux/termux-app/releases" target="_blank">Github</a>.
+
+---
+
+## Unduh AVNC
+
+- AVNC digunakan untuk mengakses GUI Kali Linux: <a href="https://play.google.com/store/apps/details?id=com.gaurav.avnc" target="_blank">Unduh AVNC</a>.
+
+---
+
+## Unduh NetHunter
+
+```bash
+termux-setup-storage
+pkg install wget
+wget -O install-nethunter-termux https://offs.ec/2MceZWr
+chmod +x install-nethunter-termux
+./install-nethunter-termux
+```
+
+---
+
+## Mengubah Bahasa ke Indonesia
+
+- Buka pengaturan bawaan NetHunter di Termux menggunakan:
+
+```bash
+nano $PREFIX/bin/nh
+```
+
+- Ubah `LANG=C.UTF-8  \` dengan kode berikut:
+
+```bash
+LANG=id_ID.UTF-8  \
+LC_TIME=id_ID.UTF-8 \
+```
+
+- Lalu masuk ke NetHunter dengan perintah `nh` atau `nethunter` dan ubah `date` ke WIB menggunakan:
+
+```bash
+sudo ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+```
+
+> Password default `sudo` NetHunter adalah: kali.
+
+- Konfirmasi pilihan bahasa:
+
+```bash
+sudo dpkg-reconfigure locales
+```
+
+- Cari `id_ID.UTF-8 UTF-8`, pilih menggunakan `Spasi`, lalu `Enter`.
+
+---
+
+## Install GUI
+
+```bash
+sudo apt update
+sudo apt install xfce4 xfce4-terminal xfce4-whiskermenu-plugin firefox-esr kali-themes dbus-x11 tigervnc-standalone-server
+```
+
+> Perhatikan terminal Termux karena akan muncul beberapa prompt yang wajib dikonfirmasi!
+
+---
+
+## Akses Kali Linux
+
+- Masukkan perintah `kex`, lalu buka AVNC, atur seperti berikut:
+
+```bash
+Host: localhost
+Port: 5901
+```
+
+- Isi `Password` sesuai dengan yang sudah kamu buat.
+
+---
+
+## Memperbaiki Audio dan Mic
+- Pastikan kamu sudah menginstal `pulseaudio` di dalam Termux maupun NetHunter, lalu masukkan perintah berikut di Termux:
+
+```bash
+pulseaudio --start --exit-idle-time=-1
+pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
+pactl load-module module-sles-source
+```
+
+- Lalu masukkan perintah berikut di dalam NetHunter:
+
+```bash
+export PULSE_SERVER=127.0.0.1 && pulseaudio --start --disable-shm=1 --exit-idle-time=-1
+```
+
+> Kamu dapat memasukkan kedua perintah di atas ke dalam `.bashrc` ataupun `.zshrc`.
+
+---
+
+> Untuk menginstal Node, silahkan baca [Instal NVM (Node Version Manager)](/posts/cara-install-ubuntu-dan-node-di-android-menggunakan-termux#instal-nvm-node-version-manager).
+
+---
