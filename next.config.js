@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  basePath: '/blog',
   reactStrictMode: true,
   // below resolve module not found on fs module
   webpack: (config, { isServer }) => {
