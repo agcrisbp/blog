@@ -16,21 +16,413 @@ Salah satu contoh nyata dari manipulasi ini adalah permainan slot online. Meskip
 
 Untuk lebih menggambarkan bagaimana perjudian online diatur, saya ingin memperlihatkan sebuah contoh kode mesin slot online. Tentu, ini bukanlah perjudian sesungguhnya, tetapi cukup menggambarkan bagaimana sebenarnya permainan judi online diatur. Di bawah ini adalah kode sederhana untuk membuat mesin slot yang sangat mirip dengan apa yang kamu temui di banyak platform judi online. Hanya saja, kali ini kita akan melihatnya dari sisi lain — `sisi pembodohan`!
 
-<iframe src="https://codesandbox.io/embed/qkgty6?view=preview&hidenavigation=1"
-     style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
-     title="simulasi-judol-10persen"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<Pre
+  codeBlocks={[
+    {
+      iframe: true,
+      content: `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUDOL TOLOL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #ffffff;
+      }
+
+      .slot {
+        border-color: #555;
+      }
+
+      button {
+        background-color: #333;
+        color: #ffffff;
+        border: 1px solid #444;
+      }
+
+      button:hover {
+        background-color: #444;
+      }
+    }
+
+    .mesin-slot {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .slot {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #ccc;
+      margin: 0 10px;
+      font-size: 36px;
+      line-height: 100px;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #hasil {
+      margin-top: 20px;
+      font-size: 20px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .efek-gacor {
+      animation: sparkles 1s ease-in-out infinite alternate;
+      font-size: 24px;
+      font-weight: bold;
+      color: gold;
+    }
+
+    @keyframes sparkles {
+      0% { transform: scale(1); color: gold; text-shadow: 0 0 10px gold; }
+      100% { transform: scale(1.2); color: red; text-shadow: 0 0 20px red; }
+    }
+  </style>
+</head>
+<body>
+  <h1>JUDOL BIKIN TOLOL</h1>
+  <p>Dalam 5 putaran pertama, kamu akan gacor sebanyak 4 kali, selebihnya adalah hasil acak dengan probabilitas 10% untuk menang.</p>
+  <div class="mesin-slot">
+    <div class="slot" id="slot1">🍒</div>
+    <div class="slot" id="slot2">🍋</div>
+    <div class="slot" id="slot3">🍊</div>
+  </div>
+  <div id="jumlahPutaran">Total Putaran: 0</div>
+  <div id="statistik">Menang: 0 │ Kalah: 0</div>
+  <div id="hasil"></div>
+  <button id="tombolPutar">Pencet</button>
+  <script>
+    const simbols = ["🍒", "🍋", "🍊", "⭐", "🔔"];
+    let totalPutaran = 0;
+    let totalMenang = 0;
+    let totalKalah = 0;
+    let sedangBerputar = false;
+    let MenangEmpat = 0;
+    
+    function putar() {
+      if (sedangBerputar) return;
+    
+      sedangBerputar = true;
+      totalPutaran++;
+      document.getElementById("jumlahPutaran").textContent = "Total Putaran: " + totalPutaran;
+    
+      document.getElementById("tombolPutar").textContent = "Sabar...";
+      let hitungPutaran = 0;
+      const interval = setInterval(() => {
+        document.getElementById("slot1").textContent = ambilSimbolAcak();
+        document.getElementById("slot2").textContent = ambilSimbolAcak();
+        document.getElementById("slot3").textContent = ambilSimbolAcak();
+        hitungPutaran++;
+        if (hitungPutaran >= 50) {
+          clearInterval(interval);
+          tampilkanHasil();
+        }
+      }, 100);
+    }
+    
+    function tampilkanHasil() {
+      let hasil;
+    
+      if (totalPutaran <= 5) {
+        if (MenangEmpat < 4) {
+          hasil = "Menang";
+          MenangEmpat++;
+        } else {
+          hasil = "Kalah";
+        }
+      } else {
+        hasil = Math.random() < 0.1 ? "Menang" : "Kalah";
+      }
+    
+      if (hasil === "Menang") {
+        tampilkanEfekGacor();
+        const simbolMenang = ambilSimbolAcak();
+        document.getElementById("slot1").textContent = simbolMenang;
+        document.getElementById("slot2").textContent = simbolMenang;
+        document.getElementById("slot3").textContent = simbolMenang;
+        totalMenang++;
+      } else {
+        document.getElementById("slot1").textContent = ambilSimbolAcak();
+        document.getElementById("slot2").textContent = ambilSimbolAcak();
+        document.getElementById("slot3").textContent = ambilSimbolAcak();
+        totalKalah++;
+      }
+    
+      document.getElementById("statistik").textContent = "Menang: " + totalMenang + " │ Kalah: " + totalKalah;
+      
+      setTimeout(() => {
+        sedangBerputar = false;
+        document.getElementById("tombolPutar").textContent = "Pencet";
+      });
+    
+      setTimeout(() => {
+        document.getElementById("hasil").textContent = "";
+      }, 5000);
+    }
+    
+    function tampilkanEfekGacor() {
+      const hasilDiv = document.getElementById("hasil");
+      hasilDiv.textContent = "Anjay Gacor 🎉";
+      hasilDiv.classList.add("efek-gacor");
+      setTimeout(() => hasilDiv.classList.remove("efek-gacor"), 5000);
+    }
+    
+    function ambilSimbolAcak() {
+      return simbols[Math.floor(Math.random() * simbols.length)];
+    }
+    
+    document.getElementById("tombolPutar").addEventListener("click", putar);
+  </script>
+</body>
+</html>`,
+    },
+  ]}
+/>
 
 Kode ini dengan jelas menunjukkan bahwa hasil "Menang" atau "Kalah" tidak sepenuhnya bergantung pada keberuntungan, meskipun bersifat acak—atau lebih tepatnya, dikendalikan. Dalam 5 putaran pertama, kamu akan merasakan 4 kali kemenangan dengan hanya 1 kali kekalahan, sedangkan putaran berikutnya memberikan hasil acak dengan peluang menang sebesar 10%. Sistem ini dapat diatur agar polanya berulang terus-menerus tanpa batas.
 
-<iframe src="https://codesandbox.io/embed/qh7fyh?view=preview&hidenavigation=1"
-     style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
-     title="simulasi-judol"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<Pre
+  codeBlocks={[
+    {
+      iframe: true,
+      content: `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUDOL TOLOL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #ffffff;
+      }
+
+      .slot {
+        border-color: #555;
+      }
+
+      button {
+        background-color: #333;
+        color: #ffffff;
+        border: 1px solid #444;
+      }
+
+      button:hover {
+        background-color: #444;
+      }
+    }
+
+    .slot-machine {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .slot {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #ccc;
+      margin: 0 10px;
+      font-size: 36px;
+      line-height: 100px;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #hasil {
+      margin-top: 20px;
+      font-size: 20px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .efek-gacor {
+      animation: sparkles 1s ease-in-out infinite alternate;
+      font-size: 24px;
+      font-weight: bold;
+      color: gold;
+    }
+
+    @keyframes sparkles {
+      0% { transform: scale(1); color: gold; text-shadow: 0 0 10px gold; }
+      100% { transform: scale(1.2); color: red; text-shadow: 0 0 20px red; }
+    }
+
+    #spinCount, #stats {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>JUDOL BIKIN TOLOL</h1>
+  <p>Dalam 5 kali putaran, kamu hanya akan gacor 1 kali, 4 kali rungkad, dan terus berulang.</p>
+  <div class="slot-machine">
+    <div class="slot" id="slot1">🍒</div>
+    <div class="slot" id="slot2">🍋</div>
+    <div class="slot" id="slot3">🍊</div>
+  </div>
+  <div id="spinCount">Total Putaran: 0</div>
+  <div id="stats">Menang: 0 │ Kalah: 0</div>
+  <div id="hasil"></div>
+  <button id="tombolPutar">Pencet</button>
+
+  <script>
+    const symbols = ["🍒", "🍋", "🍊", "⭐", "🔔"];
+    let IndexPutaran = 0;
+    let totalPutaran = 0;
+    let totalMenang = 0;
+    let totalKalah = 0;
+    let sedangPutar = false;
+    let IndexMenang = Math.floor(Math.random() * 5);
+
+    function putar() {
+      if (sedangPutar) return;
+
+      sedangPutar = true;
+      totalPutaran++;
+      document.getElementById("spinCount").textContent = "Total Putaran: " + totalPutaran;
+      document.getElementById("tombolPutar").textContent = "Sabar...";
+      let spinCount = 0;
+
+      const interval = setInterval(() => {
+        document.getElementById("slot1").textContent = simbolAcak();
+        document.getElementById("slot2").textContent = simbolAcak();
+        document.getElementById("slot3").textContent = simbolAcak();
+        spinCount++;
+        if (spinCount >= 50) {
+          clearInterval(interval);
+          tampilkanHasil();
+        }
+      }, 100);
+    }
+
+    function tampilkanHasil() {
+      let HasilKeluar;
+      let TeksHasil = "";
+
+      if (IndexPutaran === IndexMenang) {
+        HasilKeluar = "Menang";
+        TeksHasil = "Anjay Gacor 🎉";
+        totalMenang++;
+      } else {
+        HasilKeluar = "Kalah";
+        totalKalah++;
+      }
+
+      IndexPutaran = (IndexPutaran + 1) % 5;
+      if (IndexPutaran === 0) {
+        IndexMenang = Math.floor(Math.random() * 5);
+      }
+
+      document.getElementById("stats").textContent = "Menang: " + totalMenang + " │ Kalah: " + totalKalah;
+
+      const hasilDiv = document.getElementById("hasil");
+      hasilDiv.textContent = TeksHasil;
+
+      if (HasilKeluar === "Menang") {
+        tampilkanEfekGacor();
+        const simbolMenang = simbolAcak();
+        document.getElementById("slot1").textContent = simbolMenang;
+        document.getElementById("slot2").textContent = simbolMenang;
+        document.getElementById("slot3").textContent = simbolMenang;
+      } else {
+        document.getElementById("slot1").textContent = simbolAcak();
+        document.getElementById("slot2").textContent = simbolAcak();
+        document.getElementById("slot3").textContent = simbolAcak();
+      }
+      
+      setTimeout(() => {
+        sedangPutar = false;
+        document.getElementById("tombolPutar").textContent = "Pencet";
+      });
+
+      setTimeout(() => {
+        document.getElementById("hasil").textContent = "";
+      }, 5000);
+    }
+
+    function tampilkanEfekGacor() {
+      const hasilDiv = document.getElementById("hasil");
+      hasilDiv.classList.add("efek-gacor");
+      setTimeout(() => hasilDiv.classList.remove("efek-gacor"), 5000);
+    }
+
+    function simbolAcak() {
+      return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    document.getElementById("tombolPutar").addEventListener("click", putar);
+  </script>
+</body>
+</html>`,
+    },
+  ]}
+/>
 
 Jadi, apakah ini yang kita sebut “Nikmatnya judi online”? Apakah kamu benar-benar akan berhadapan dengan kekayaanmu atau justru sedang dibodohi oleh sistem yang terstruktur untuk menguntungkan pemilik situs?
 
