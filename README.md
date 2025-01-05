@@ -71,6 +71,8 @@ console.log(greeting);`,
 />
 ```
 
+> You still can use ```triple-backsticks``` but it will be rendered without CopyButton (Its Pre components).
+
 ---
 
 ## Sponsor
