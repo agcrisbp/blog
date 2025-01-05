@@ -64,7 +64,7 @@ const BlogPost: NextPage<BlogPostProps> = ({ data, mdxSource }) => {
             />
             <p className="text-sm md:text-base">
               <strong>
-                <a href="https://aghea.site/" target="_blank" rel="noreferrer">
+                <a href="https://aghea.vercel.app/" target="_blank" rel="noreferrer">
                   {data.author_name}
                 </a>
               </strong>
