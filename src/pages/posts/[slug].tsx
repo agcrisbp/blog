@@ -101,7 +101,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  // const mdxPrism = require('mdx-prism') // Removed require statement
 
   const { slug } = ctx.params as URLSlug
   const blog = await getBlogBySlug(slug)
