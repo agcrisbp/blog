@@ -18,15 +18,19 @@ keywords: ['Termux', 'PHPMyAdmin', 'MariaDB']
 ## Instalasi Apache Web Server dan PHP
 - Buka Termux dan ketikkan perintah berikut:
 
-```bash
-pkg install git -y && 
+<Pre
+  codeBlocks={[
+    {
+      content: `pkg install git -y && 
 cd ~/ && 
 git clone https://github.com/agcrisbp/apache-termux.git && 
 cd ~/apache-termux && 
 bash setup && 
 cd ~/ && 
-rm -rf apache-termux
-```
+rm -rf apache-termux`,
+    },
+  ]}
+/>
 
 - Jika muncul perintah:
 ```bash

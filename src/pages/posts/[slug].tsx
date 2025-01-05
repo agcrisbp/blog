@@ -1,4 +1,3 @@
-import MDXComponents from '@/components/contents'
 import CustomImage from '@/components/mollecules/CustomImage'
 import Layout from '@/components/template/Layout'
 
@@ -9,10 +8,14 @@ import { twclsx } from '@/libs/twclsx'
 
 import { GetStaticPaths, GetStaticPathsResult, GetStaticProps, NextPage } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { MDXComponents } from 'mdx/types'
 import { serialize } from 'next-mdx-remote/serialize'
 import { Blog } from 'next-starter-blog'
 import 'prism-themes/themes/prism-night-owl.css'
 import { ParsedUrlQuery } from 'querystring'
+import { Pre, InlineCode, Blockquote } from '@/components/contents/'
+import UnderlineLink from '@/components/mollecules/UnderlineLink'
+import mdxPrism from 'mdx-prism' // Import mdx-prism directly
 
 interface URLSlug extends ParsedUrlQuery {
   slug: string
@@ -27,35 +30,48 @@ const BlogPost: NextPage<BlogPostProps> = ({ data, mdxSource }) => {
   const metaData = useMetaData(data)
   const isMediumScreen = useMediaQuery('(min-width: 768px)')
 
+  const components = {
+    a: UnderlineLink,
+    blockquote: Blockquote,
+    Pre,
+    code: InlineCode,
+  }
+
   return (
-    <Layout {...metaData} as='main' title={data.title} description={data.summary}>
+    <Layout {...metaData} as="main" title={data.title} description={data.summary}>
       <article>
-      <h1 className='mb-8 md:text-5xl'>{data.title}</h1>
-        <figure className='w-full pt-0'>
+        <h1 className="mb-8 md:text-5xl">{data.title}</h1>
+        <figure className="w-full pt-0">
           <CustomImage
             src={data.thumbnail ?? '/phpmyadmin.png'}
             alt={data.title}
-            display='intrinsic'
+            display="intrinsic"
             width={768}
             height={isMediumScreen ? 376 : 468}
-            objectFit='cover'
-            className='rounded'
+            objectFit="cover"
+            className="rounded"
           />
         </figure>
-        <section className='border-b border-main-2 dark:border-main-3 py-10'>
-          <div className='flex items-center gap-4'>
+        <section className="border-b border-main-2 dark:border-main-3 py-10">
+          <div className="flex items-center gap-4">
             <CustomImage
-              display='intrinsic'
+              display="intrinsic"
               width={32}
               height={32}
               src={data.author_image}
               alt={data.author_name}
-              className='rounded-full'
+              className="rounded-full"
             />
-            <p className='text-sm md:text-base'>
-              <strong><a href="https://aghea.site/" target="_blank" rel="noreferrer">{data.author_name}</a></strong>
-              <br/>
-              <time dateTime={dateStringToISO(data.published)}>{dateFormat(data.published)}</time>
+            <p className="text-sm md:text-base">
+              <strong>
+                <a href="https://aghea.site/" target="_blank" rel="noreferrer">
+                  {data.author_name}
+                </a>
+              </strong>
+              <br />
+              <time dateTime={dateStringToISO(data.published)}>
+                {dateFormat(data.published)}
+              </time>
             </p>
           </div>
         </section>
@@ -66,7 +82,7 @@ const BlogPost: NextPage<BlogPostProps> = ({ data, mdxSource }) => {
             'prose-a:no-underline prose-a:font-semibold prose-a:text-primary-4'
           )}
         >
-          <MDXRemote {...mdxSource} components={MDXComponents} />
+          <MDXRemote {...mdxSource} components={components as MDXComponents} />
         </section>
       </article>
     </Layout>
@@ -80,13 +96,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     fallback: false,
-    paths
+    paths,
   }
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const mdxPrism = require('mdx-prism')
+  // const mdxPrism = require('mdx-prism') // Removed require statement
 
   const { slug } = ctx.params as URLSlug
   const blog = await getBlogBySlug(slug)
@@ -96,8 +111,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   return {
     props: {
       mdxSource,
-      data: { ...blog.data, slug }
-    }
+      data: { ...blog.data, slug },
+    },
   }
 }
 

@@ -1,0 +1,93 @@
+---
+featured: true
+title: 'Nikmatnya Judi Online'
+summary: 'Judi online kini semakin merajalela di Indonesia, tetapi apakah kamu benar-benar akan berhadapan dengan kekayaanmu atau justru sedang terjebak dalam pembodohan yang terbungkus iming-iming kemewahan? Tulisan ini mengungkapkan bagaimana judi online hanyalah ilusi yang dirancang untuk merugikan pemain dan menguntungkan pemilik situs.'
+published: '2024-12-30'
+author_name: 'Agcrismanto Budhi Praswastyka'
+author_image: '/favicon.ico'
+thumbnail: "/StopJudol.jpg"
+tags: ['Informasi']
+keywords: ['Informasi']
+---
+
+Judi online kini semakin merajalela di Indonesia. Semua orang, dari yang muda hingga tua, seolah terpesona dengan janji manis kekayaan yang ditawarkan oleh permainan daring ini. Slogan-slogan seperti "Taruhan besar, menang lebih besar!" beredar di mana-mana, menggoda mereka yang haus akan kekayaan instan. Namun, mari kita berhenti sejenak dan berpikir: Apakah ini semua seindah yang digembar-gemborkan?
+
+Salah satu contoh nyata dari manipulasi ini adalah permainan slot online. Meskipun tampilan dan iklannya menarik, tahukah kamu bahwa di balik layar, algoritma bekerja untuk memastikan sebagian besar pemain akan kalah?
+
+Untuk lebih menggambarkan bagaimana perjudian online diatur, saya ingin memperlihatkan sebuah contoh kode mesin slot online. Tentu, ini bukanlah perjudian sesungguhnya, tetapi cukup menggambarkan bagaimana sebenarnya permainan judi online diatur. Di bawah ini adalah kode sederhana untuk membuat mesin slot yang sangat mirip dengan apa yang kamu temui di banyak platform judi online. Hanya saja, kali ini kita akan melihatnya dari sisi lain — `sisi pembodohan`!
+
+<iframe src="https://codesandbox.io/embed/qkgty6?view=preview&hidenavigation=1"
+     style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
+     title="simulasi-judol-10persen"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+Kode ini dengan jelas menunjukkan bahwa hasil "Menang" atau "Kalah" tidak sepenuhnya bergantung pada keberuntungan, meskipun bersifat acak—atau lebih tepatnya, dikendalikan. Dalam 5 putaran pertama, kamu akan merasakan 4 kali kemenangan dengan hanya 1 kali kekalahan, sedangkan putaran berikutnya memberikan hasil acak dengan peluang menang sebesar 10%. Sistem ini dapat diatur agar polanya berulang terus-menerus tanpa batas.
+
+<iframe src="https://codesandbox.io/embed/qh7fyh?view=preview&hidenavigation=1"
+     style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
+     title="simulasi-judol"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+Jadi, apakah ini yang kita sebut “Nikmatnya judi online”? Apakah kamu benar-benar akan berhadapan dengan kekayaanmu atau justru sedang dibodohi oleh sistem yang terstruktur untuk menguntungkan pemilik situs?
+
+Pada akhirnya, judi online tidak lebih dari permainan yang dirancang untuk membuat kamu merasa "menang", padahal kenyataannya kamu hanya kehilangan lebih banyak uang.
+
+---
+
+> Berikut adalah perbedaan kode untuk hasil acak dengan probabilitas 10% untuk menang, dan hasil yang sudah ditentukan.
+
+<Pre
+  codeBlocks={[
+    {
+      label: 'Strategi Menang Empat',
+      language: 'javascript',
+      content: `let MenangEmpat = 0;
+
+function tampilkanHasil() {
+    let hasil;
+  
+    if (totalPutaran <= 5) {
+      if (MenangEmpat < 4) {
+        hasil = "Menang";
+        MenangEmpat++;
+      } else {
+        hasil = "Kalah";
+      }
+    } else {
+      hasil = Math.random() < 0.1 ? "Menang" : "Kalah";
+    }
+}`,
+    },
+    {
+      label: 'Strategi Index Menang',
+      language: 'javascript',
+      content: `let IndexPutaran = 0;
+let IndexMenang = Math.floor(Math.random() * 5);
+
+function tampilkanHasil() {
+    let HasilKeluar;
+    let TeksHasil = "";
+  
+    if (IndexPutaran === IndexMenang) {
+      HasilKeluar = "Menang";
+      TeksHasil = "Anjay Gacor 🎉";
+      totalMenang++;
+    } else {
+      HasilKeluar = "Kalah";
+      totalKalah++;
+    }
+  
+    IndexPutaran = (IndexPutaran + 1) % 5;
+    if (IndexPutaran === 0) {
+      IndexMenang = Math.floor(Math.random() * 5);
+    }
+}`,
+    },
+  ]}
+/>
+
+---

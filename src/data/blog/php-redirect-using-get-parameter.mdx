@@ -9,17 +9,19 @@ tags: ['PHP']
 keywords: ['php redirect', 'php']
 ---
 
-- First step, build your `index.html`. Example:
-```html
-<html lang="en" data-bs-theme="dark">
+- First step, build your `index.html`. Then create a file `link.php` or whatever, and fill in the file with the code below (adjust it to your needs). Example:
 
+<Pre
+  codeBlocks={[
+    {
+      label: 'index.html',
+      content: `<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>Invitation</title>    
 </head>
 <body>
-    
     	<form method="GET" action="link.php">
             <div class="container">
                 <div class="border rounded-3 p-3">
@@ -38,73 +40,51 @@ keywords: ['php redirect', 'php']
                         <label class="form-label">Last Name</label>
                         <input name="lname" type="text" class="form-control shadow-sm" id="formnama" placeholder="Required" required>
                     </div>
-                    
                     <div class="d-grid mb-2">
                         <button class="btn btn-primary btn-sm rounded shadow" id="kirim">
                             Send<i class="fa-solid fa-paper-plane ms-1"></i>
                         </button>
                     </div>
                 </div>
-                
             </div>
           </form>
-
 </body>
-</html>
-```
-
-- Result:
-![Preview](https://i.ibb.co/rpvw4tv/inv.jpg)
-
-# 
-- Then create a file `link.php` or whatever, and fill in the file with the code below (adjust it to your needs):
-```php
-<html>
+</html>`
+    },
+    {
+      label: 'link.php',
+      language: 'php',
+      content: `<html>
 <head>
-	
-        <title>
-        PHP REDIRECT FROM SUBMISSION FORM USING GET PARAMETER
-        </title>
-
+        <title>PHP REDIRECT FROM SUBMISSION FORM USING GET PARAMETER</title>
 </head>
 <body>
-
-<!-- Start HTML Body/CSS →
-
-<!-- Start Get Parameters →
-
+<!-- Start Get Parameters -->
 <?php
-
 $name = $_GET['name'];
 $mname = $_GET['mname'];
 $lname = $_GET['lname'];
 
-echo "<h2>Click " . "<a href=https://example.com/?to=$name%20$mname%20$lname>" . "here</a>" . " if you are not redirected automatically in: <span id=seconds>5<span></h2>";
+echo "<h2>Click <a href=https://example.com/?to=$name%20$mname%20$lname>here</a> if you are not redirected automatically in: <span id=seconds>5<span></h2>";
 ?>
 
 <?php
 $url;
 $time = 5500; // time in milliseconds
 switch ($_GET['name']) {
-        case '':
-                default:
-                $url = "https://example.com";
-        break;
+    case '':
+    default:
+    $url = "https://example.com";
+    break;
 }
 ?>
 
-<!-- End Get Parameters →
-
-<!-- Start Redirect →
-
+<!-- Start Redirect -->
 <script type="text/javascript">
-        setTimeout("window.location='<?php echo $url . "/?to=$name" . "%20" . "$mname" . "%20" . "$lname"; ?>'", <?php echo $time; ?>);
+    setTimeout("window.location='<?php echo $url . "/?to=$name" . "%20" . "$mname" . "%20" . "$lname"; ?>'", <?php echo $time; ?>);
 </script>
 
-<!-- End Redirect -->
-
-<!-- // Start Countdown →
-
+<!-- Start Countdown -->
 <script type="text/javascript">
 var seconds = 5; // seconds for HTML
 var foo; // variable for clearInterval() function
@@ -123,11 +103,8 @@ function countdownTimer() {
 }
 countdownTimer();
 </script>
-
-<!-- // End Countdown →
-
-<!-- End HTML Body/CSS →
-
 </body>
-</html>
-```
+</html>`
+    }
+  ]}
+/>

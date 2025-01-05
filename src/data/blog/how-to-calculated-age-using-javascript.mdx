@@ -1,5 +1,5 @@
 ---
-title: 'How To Calculated Age For Date of Birth Using JavaScript'
+title: 'How To Calculate Age For Date of Birth Using JavaScript'
 summary: 'You can use this script to calculate your ages or hours of support.'
 author_name: 'Agcrismanto Budhi Praswastyka'
 author_image: '/favicon.ico'
@@ -11,8 +11,10 @@ keywords: ['JavaScript']
 
 - Create **age.js** file and fill it with this code:
 
-```js
-<!-- CHANGE ME -->
+<Pre
+  codeBlocks={[
+    {
+      content: `<!-- CHANGE ME -->
 var DOB = "August 31, 1998";
 
 var millisecondsBetweenDOBAnd1970 = Date.parse(DOB);
@@ -20,15 +22,15 @@ var millisecondsBetweenNowAnd1970 = Date.now();
 var ageInMilliseconds = millisecondsBetweenNowAnd1970-millisecondsBetweenDOBAnd1970;
 //--We will leverage Date.parse and now method to calculate age in milliseconds refer here https://www.w3schools.com/jsref/jsref_parse.asp
 
-  var milliseconds = ageInMilliseconds;
-  var second = 1000;
-  var minute = second*60;
-  var hour = minute*60;
-  var day = hour*24;
-  var month = day*30; 
-  
+var milliseconds = ageInMilliseconds;
+var second = 1000;
+var minute = second*60;
+var hour = minute*60;
+var day = hour*24;
+var month = day*30; 
+
 //using 30 as base as months can have 28, 29, 30 or 31 days depending a month in a year it itself is a different piece of comuptation*/
-  var year = day*365;
+var year = day*365;
 
 //let the age conversion begin
 var years = Math.round(milliseconds/year);
@@ -37,19 +39,22 @@ var days = years*365;
 var hours = Math.round(milliseconds/hour);
 var seconds = Math.round(milliseconds/second);
 
-  
 function printResults(){
   var message = ""+years;
   document.getElementById('age').innerHTML = message;
 }
 
-window.onload = printResults;
-```
+window.onload = printResults;`,
+    },
+  ]}
+/>
 
 - Put the `age.js` script into your `index.html` inside the body tag, before `</body>`.
 
-```html
-<html>
+<Pre
+  codeBlocks={[
+    {
+      content: `<html>
 <head>
    <title>
      EXAMPLE
@@ -59,21 +64,23 @@ window.onload = printResults;
 <body>
 
 <!-- Start HTML Body/CSS →
-	
-	Age: <span id="age"></span>
-	
+
+Age: <span id="age"></span>
+
 <!-- End HTML Body/CSS →
 
 <script src="../age.js"></script>
 
 </body>
-</html>
-```
+</html>`,
+    },
+  ]}
+/>
 
 ---
 
 ## Preview
 
- <iframe src="https://codesandbox.io/embed/age-preview-cg2pmx?fontsize=14&hidenavigation=1&theme=dark" width="100%" height="300px" border="0" border-radius="4px" overflow="hidden" title="age-preview" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+<iframe src="https://codesandbox.io/embed/age-preview-cg2pmx?fontsize=14&hidenavigation=1&theme=dark" width="100%" height="300px" border="0" border-radius="4px" overflow="hidden" title="age-preview" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
 
 > Still confused? Feel free to <a href="https://twitter.com/messages/compose?recipient_id=434987538">contact me</a>.

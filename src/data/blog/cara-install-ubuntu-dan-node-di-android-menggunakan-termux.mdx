@@ -26,54 +26,83 @@ keywords: ['Termux', 'Ubuntu', 'Ubuntu 23.10', 'Node', 'NodeJS', 'Android']
 
 ## Unduh Ubuntu 23.10
 
-```bash
-yes | pkg up
+<Pre
+  codeBlocks={[
+    {
+      content: `yes | pkg up
 curl https://raw.githubusercontent.com/agcrisbp/LinuxAndroid/main/install.sh >> install.sh
-bash install.sh
-```
+bash install.sh`,
+    },
+  ]}
+/>
 
 - Password default untuk user charis: ch.
 
 - Jangan lupa untuk memperbarui modul-modul Ubuntu menggunakan perintah:
-```bash
-apt update && apt upgrade
-```
+
+<Pre
+  codeBlocks={[
+    {
+      content: `apt update && apt upgrade`,
+    },
+  ]}
+/>
 
 ---
 
 ## Menambah User Baru
 
-```bash
-proot-distro login ubuntu
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `proot-distro login ubuntu`,
+    },
+  ]}
+/>
 
 - Tambahkan user:
 
-```bash
-adduser Username
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `adduser Username`,
+    },
+  ]}
+/>
 
 > CATATAN! Kamu harus mengingat passwordmu untuk [mengakses Ubuntu](#akses-ubuntu) nantinya.
 
 - Izin akses root:
 
-```bash
-sudo visudo
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `sudo visudo`,
+    },
+  ]}
+/>
 
 - Tambahkan baris baru tepat di bawah `root    ALL=(ALL:ALL) ALL`:
 
-```bash
-Username    ALL=(ALL:ALL) ALL
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `Username    ALL=(ALL:ALL) ALL`,
+    },
+  ]}
+/>
 
 - Tambahkan akses login baru:
 
-```bash
-echo "proot-distro login --user Username ubuntu" >> $PREFIX/bin/Username
+<Pre
+  codeBlocks={[
+    {
+      content: `echo "proot-distro login --user Username ubuntu" >> $PREFIX/bin/Username
 chmod +x $PREFIX/bin/Username
-rm $CHROOT/root/.bashrc
-```
+rm $CHROOT/root/.bashrc`,
+    },
+  ]}
+/>
 
 > Ubah semua `Username` dengan nama yang kamu inginkan. Hal ini untuk mempermudah login hanya dengan `Username` tanpa harus menulis `proot-distro login ubuntu`.
 
@@ -83,22 +112,34 @@ rm $CHROOT/root/.bashrc
 
 - Unduh paket Bahasa Indonesia:
 
-```bash
-sudo apt-get install language-pack-id
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `sudo apt-get install language-pack-id`,
+    },
+  ]}
+/>
 
 - Ubah environment:
 
-```bash
-sudo nano /etc/environment
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `sudo nano /etc/environment`,
+    },
+  ]}
+/>
 
 - Ubah `LANG=en_EN.UTF-8` dengan kode berikut:
 
-```bash
-LANG=id_ID.UTF-8
-LC_TIME=id_ID.UTF-8
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `LANG=id_ID.UTF-8
+LC_TIME=id_ID.UTF-8`,
+    },
+  ]}
+/>
 
 - Mulai ulang Termux.
 
@@ -108,48 +149,74 @@ LC_TIME=id_ID.UTF-8
 
 - Buka AVNC, atur seperti berikut:
 
-```bash
-Host: localhost
-Port: 1
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `Host: localhost
+Port: 1`,
+    },
+  ]}
+/>
 
 - Isi `Username` dan `Password` sesuai dengan yang sudah kamu buat.
 
 ---
 
 ## Instal NVM (Node Version Manager)
+
 - Pertama, kamu perlu menginstal `curl` jika belum terinstal otomatis pada saat melakukan penginstalan Ubuntu.
 
-```bash
-sudo apt install curl -y
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `sudo apt install curl -y`,
+    },
+  ]}
+/>
 
 - Lalu unduh NVM menggunakan curl. Ketika kamu menjalankan perintah khusus ini, curl akan mengunduh skrip instalasi NVM. Setelah itu, bash mengeksekusi skrip yang sama untuk menginstal NVM.
 
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash`,
+    },
+  ]}
+/>
 
 ---
 
 ## Aktivasi NVM
-```bash
-source ~/.bashrc
-```
+
+<Pre
+  codeBlocks={[
+    {
+      content: `source ~/.bashrc`,
+    },
+  ]}
+/>
 
 ---
 
 ## Install Node
 
-```bash
-nvm install --lts
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `nvm install --lts`,
+    },
+  ]}
+/>
 
 - Node versi terbaru telah terinstal, atau gunakan perintah di bawah ini untuk memastikan versi Node yang baru saja kamu instal:
 
-```bash
-node -v
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `node -v`,
+    },
+  ]}
+/>
 
 ---
 
@@ -157,12 +224,20 @@ node -v
 
 - Jika sudah yakin dengan versi dari Node yang kamu instal, kamu perlu mengatur versi default dari NVM agar dapat digunakan secara default kapan pun kamu membutuhkannya. Kamu dapat menggunakan perintah di bawah ini untuk melakukannya. Pastikan untuk mengubah versinya ke versi yang sama persis dengan versi yang telah kamu instal.
 
-```bash
-nvm use --lts
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `nvm use --lts`,
+    },
+  ]}
+/>
 
 - Jika versi Node kamu adalah 24.1.2, maka gunakan perintah di bawah ini:
 
-```bash
-nvm alias default 24.1.2
-```
+<Pre
+  codeBlocks={[
+    {
+      content: `nvm alias default 24.1.2`,
+    },
+  ]}
+/>
