@@ -1,6 +1,5 @@
 import CustomImage from '@/components/mollecules/CustomImage'
 import Layout from '@/components/template/Layout'
-
 import { getBlog, getBlogBySlug } from '@/helpers'
 import { useMediaQuery, useMetaData } from '@/hooks'
 import { dateFormat, dateStringToISO } from '@/libs/dateFormat'
@@ -15,7 +14,8 @@ import 'prism-themes/themes/prism-night-owl.css'
 import { ParsedUrlQuery } from 'querystring'
 import { Pre, InlineCode, Blockquote } from '@/components/contents/'
 import UnderlineLink from '@/components/mollecules/UnderlineLink'
-import mdxPrism from 'mdx-prism' // Import mdx-prism directly
+import mdxPrism from 'mdx-prism'
+import Comments from './comments';
 
 interface URLSlug extends ParsedUrlQuery {
   slug: string
@@ -64,7 +64,7 @@ const BlogPost: NextPage<BlogPostProps> = ({ data, mdxSource }) => {
             />
             <p className="text-sm md:text-base">
               <strong>
-                <a href="https://aghea.vercel.app/" target="_blank" rel="noreferrer">
+                <a href={process.env.AUTHOR_URL ? `${process.env.AUTHOR_URL}` : undefined} target="_blank" rel="noreferrer">
                   {data.author_name}
                 </a>
               </strong>
@@ -84,6 +84,14 @@ const BlogPost: NextPage<BlogPostProps> = ({ data, mdxSource }) => {
         >
           <MDXRemote {...mdxSource} components={components as MDXComponents} />
         </section>
+        {process.env.NEXT_PUBLIC_GISCUS_REPO ? (
+          <Comments
+            repo={process.env.NEXT_PUBLIC_GISCUS_REPO || ""}
+            repoId={process.env.NEXT_PUBLIC_GISCUS_REPO_ID || ""}
+            category={process.env.NEXT_PUBLIC_GISCUS_CATEGORY || ""}
+            categoryId={process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || ""}
+          />
+        ) : null}
       </article>
     </Layout>
   )
@@ -101,7 +109,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-
   const { slug } = ctx.params as URLSlug
   const blog = await getBlogBySlug(slug)
 
