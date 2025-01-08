@@ -24,7 +24,7 @@ const Comments: React.FC<CommentsProps> = ({
   const isValidRepo = repo && repo.includes("/") ? repo : "";
   
   return (
-    <div className="prose md:prose-lg dark:prose-invert">
+    <div>
       {isValidRepo ? (
         <Giscus
           repo={isValidRepo as `${string}/${string}`}
@@ -34,7 +34,7 @@ const Comments: React.FC<CommentsProps> = ({
           mapping="title"
           reactionsEnabled="1"
           emitMetadata="0"
-          theme="preferred_color_scheme"
+          theme="catppuccin_latte"
           inputPosition="top"
           lang="id"
         />
