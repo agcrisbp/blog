@@ -34,7 +34,7 @@ const Comments: React.FC<CommentsProps> = ({
           mapping="title"
           reactionsEnabled="1"
           emitMetadata="0"
-          theme="catppuccin_latte"
+          theme="cobalt"
           inputPosition="top"
           lang="id"
         />
