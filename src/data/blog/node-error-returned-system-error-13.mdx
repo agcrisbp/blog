@@ -1,0 +1,113 @@
+---
+featured: true
+title: "Resolving NodeError [SystemError]: uv_interface_addresses returned Unknown system error 13"
+summary: 'Fix the uv_interface_addresses error in Node.js by modifying get-network-host.js in Next.js.'
+published: "2025-03-18"
+author_name: 'Agcrismanto Budhi Praswastyka'
+author_image: '/favicon.ico'
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png"
+tags: ["Informasi", "Termux", "Android"]
+keywords: ["NodeJS"]
+---
+
+When working with Node.js, you might encounter an error message like:
+
+> **NodeError [SystemError]: A system error occurred: uv_interface_addresses returned Unknown system error 13**
+
+This message indicates that a system error occurred when Node.js attempted to access network information using the `uv_interface_addresses` function. The issue is often related to permission problems or network configuration issues on your operating system.
+
+# Common Causes
+
+Some common reasons for this error include:
+
+- **Permission Issues**: Node.js might not have the required permissions to access network information. This can happen if the application runs with limited privileges.
+- **Network Configuration Issues**: Your OS's network settings might prevent `uv_interface_addresses` from retrieving the necessary information.
+- **Node.js or OS Version Issues**: Some versions of Node.js or your OS may have bugs or changes affecting this function.
+
+# Recommended Fix
+
+To fix this issue in a Next.js project, modify `node_modules/next/dist/lib/get-network-host.js` by replacing certain parts of its contents with the following code:
+
+<Pre
+  codeBlocks={[
+    {
+        language: "javascript",
+        label: "node_modules/next/dist/lib/get-network-host.js",
+      content: `"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "getNetworkHost", {
+    enumerable: true,
+    get: function () {
+        return getNetworkHost;
+    }
+});
+
+const _os = /*#__PURE__*/ _interop_require_default(require("os"));
+
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+
+// Patched version
+function getNetworkHosts(family) {
+    let interfaces;
+
+    try {
+        interfaces = _os.default.networkInterfaces();
+    } catch (err) {
+        // fallback kalau access network gagal
+        return family === "IPv4" ? ["127.0.0.1"] : [];
+    }
+
+    const hosts = [];
+    if (!interfaces) {
+        return family === "IPv4" ? ["127.0.0.1"] : [];
+    }
+
+    Object.keys(interfaces).forEach((key) => {
+        interfaces[key]?.filter((networkInterface) => {
+            switch (networkInterface.family) {
+                case 'IPv6':
+                    return family === 'IPv6' &&
+                        networkInterface.scopeid === 0 &&
+                        networkInterface.address !== '::1';
+                case 'IPv4':
+                    return family === 'IPv4' &&
+                        networkInterface.address !== '127.0.0.1';
+                default:
+                    return false;
+            }
+        }).forEach((networkInterface) => {
+            if (networkInterface.address) {
+                hosts.push(networkInterface.address);
+            }
+        });
+    });
+
+    // kalau gagal dapet apa-apa → fallback
+    if (!hosts.length && family === "IPv4") {
+        return ["127.0.0.1"];
+    }
+
+    return hosts;
+}
+
+function getNetworkHost(family) {
+    const hosts = getNetworkHosts(family);
+    return hosts[0] ?? null;
+}
+
+//# sourceMappingURL=get-network-host.js.map`,
+    },
+  ]}
+/>
+
+> This fix ensures that if network interfaces cannot be retrieved, the function will fail gracefully without breaking the app.
+> 
+> Since modifying node_modules is not a permanent solution, consider implementing a patching mechanism (e.g., using patch-package) or overriding the function at runtime.
+> 
+> By applying this fix, you should be able to resolve the `uv_interface_addresses` error and continue working with Next.js without issues.

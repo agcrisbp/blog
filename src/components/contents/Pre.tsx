@@ -1,10 +1,12 @@
 import Button from '@/components/atoms/Button'
+
 import { twclsx } from '@/libs/twclsx'
-import { ClipboardCopyIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
+
+import { ChevronDownIcon, ChevronUpIcon, ClipboardCopyIcon } from '@heroicons/react/solid'
+import Prism from 'prismjs'
+import 'prismjs/components/'
 import { useEffect, useRef, useState } from 'react'
 import { Tooltip, TooltipProps } from 'react-tippy'
-import Prism from 'prismjs';
-import 'prismjs/components/';
 
 interface CodeBlock {
   label?: string
@@ -80,18 +82,25 @@ const Pre: React.FunctionComponent<PreProps> = ({ codeBlocks }) => {
   return (
     <div className={twclsx('relative')}>
       {!currentBlock.iframe && (
-        <div className={twclsx('absolute left-0 right-12', 'h-11 rounded-tl rounded-br', 'bg-slate-700 dark:bg-slate-800')}>
-          {codeBlocks.length > 1 && (
-            <div className="relative" ref={dropdownRef}>
+        <div
+          className={twclsx(
+            'absolute left-0 right-12',
+            'h-11 rounded-tl rounded-br',
+            'bg-slate-700 dark:bg-slate-800 flex items-center px-3'
+          )}
+        >
+          {codeBlocks.length > 1 ? (
+            <div className='relative' ref={dropdownRef}>
               <button
                 className={twclsx('bg-primary-4 text-white py-2 px-3 rounded-md shadow-sm')}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 {currentBlock.label || 'Code Block'}
-                <ChevronDownIcon className="w-4 h-4 ml-2 inline-block" />
+                <ChevronDownIcon className='w-4 h-4 ml-2 inline-block' />
               </button>
+
               {isDropdownOpen && (
-                <div className="absolute mt-1 left-0 right-0 bg-primary-4 shadow-md rounded-md z-10">
+                <div className='absolute mt-1 left-0 right-0 bg-primary-4 shadow-md rounded-md z-10'>
                   {codeBlocks.map((block, index) => (
                     <button
                       key={index}
@@ -99,7 +108,7 @@ const Pre: React.FunctionComponent<PreProps> = ({ codeBlocks }) => {
                         setActiveIndex(index)
                         setIsDropdownOpen(false)
                       }}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100 focus:outline-none"
+                      className='w-full text-left px-4 py-2 hover:bg-gray-100 focus:outline-none'
                     >
                       {block.label || `Block ${index + 1}`}
                     </button>
@@ -107,6 +116,8 @@ const Pre: React.FunctionComponent<PreProps> = ({ codeBlocks }) => {
                 </div>
               )}
             </div>
+          ) : (
+            <span className='text-white font-medium'>{currentBlock.label || 'Code Block'}</span>
           )}
         </div>
       )}
@@ -140,11 +151,9 @@ const Pre: React.FunctionComponent<PreProps> = ({ codeBlocks }) => {
       {currentBlock.iframe ? (
         <iframe
           ref={iframeRef}
-          sandbox="allow-scripts allow-same-origin"
+          sandbox='allow-scripts allow-same-origin'
           srcDoc={currentBlock.content}
-          className={twclsx(
-            'w-full border rounded-md max-h-full'
-          )}
+          className={twclsx('w-full border rounded-md max-h-full')}
         />
       ) : (
         <pre
@@ -160,15 +169,19 @@ const Pre: React.FunctionComponent<PreProps> = ({ codeBlocks }) => {
       )}
 
       {!currentBlock.iframe && (
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className={twclsx(
-          'absolute right-2 bottom-2 p-1 rounded-full bg-gray-700 hover:bg-gray-600',
-          'focus:outline-none focus:ring-2 focus:ring-blue-500'
-        )}
-      >
-        {isExpanded ? <ChevronUpIcon className="w-5 h-5 text-white" /> : <ChevronDownIcon className="w-5 h-5 text-white" />}
-      </button>
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className={twclsx(
+            'absolute right-2 bottom-2 p-1 rounded-full bg-gray-700 hover:bg-gray-600',
+            'focus:outline-none focus:ring-2 focus:ring-blue-500'
+          )}
+        >
+          {isExpanded ? (
+            <ChevronUpIcon className='w-5 h-5 text-white' />
+          ) : (
+            <ChevronDownIcon className='w-5 h-5 text-white' />
+          )}
+        </button>
       )}
     </div>
   )
