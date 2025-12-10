@@ -35,7 +35,9 @@ const Home: NextPage<HomeProps> = ({ latestPost = [] }) => {
     <Layout as='main' {...meta}>
       <HeroWithPhoto image='/favicon.ico' imageAlt={ownerName} {...meta}>
         <p className={twclsx('max-w-prose mt-2')}>
-          Situs ini berisi dokumentasi dari tulisan dan opini saya untuk bahan pembelajaran maupun bacaan semata. Beberapa artikel saya tulis dalam Bahasa Inggris agar dapat bermanfaat dan dibaca oleh teman-teman dari mancanegara.
+          Situs ini berisi dokumentasi dari tulisan dan opini saya untuk bahan pembelajaran maupun bacaan semata.
+          Beberapa artikel saya tulis dalam Bahasa Inggris agar dapat bermanfaat dan dibaca oleh teman-teman dari
+          mancanegara.
         </p>
       </HeroWithPhoto>
 
@@ -75,7 +77,7 @@ export const getStaticProps: GetStaticProps = async () => {
           new Date(a.published) > new Date(a.published) ? 1 : new Date(a.published) < new Date(b.published) ? -1 : 0
         )
         // cut the first 3 and so on, leave only 2 latest post
-        .slice(0, 3),
+        .slice(0, 3)
     }
   }
 }

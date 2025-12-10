@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react";
-import Giscus from "@giscus/react";
+import Giscus from '@giscus/react'
+import React, { useEffect, useState } from 'react'
 
 interface CommentsProps {
-  repo: string;
-  repoId: string;
-  category: string;
-  categoryId: string;
+  repo: string
+  repoId: string
+  category: string
+  categoryId: string
 }
 
-const Comments: React.FC<CommentsProps> = ({
-  repo,
-  repoId,
-  category,
-  categoryId,
-}) => {
-  const [isClient, setIsClient] = useState(false);
+const Comments: React.FC<CommentsProps> = ({ repo, repoId, category, categoryId }) => {
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    setIsClient(true)
+  }, [])
 
-  if (!isClient) return null;
-  const isValidRepo = repo && repo.includes("/") ? repo : "";
-  
+  if (!isClient) return null
+  const isValidRepo = repo && repo.includes('/') ? repo : ''
+
   return (
     <div>
       {isValidRepo ? (
@@ -31,16 +26,16 @@ const Comments: React.FC<CommentsProps> = ({
           repoId={repoId}
           category={category}
           categoryId={categoryId}
-          mapping="title"
-          reactionsEnabled="1"
-          emitMetadata="0"
-          theme="cobalt"
-          inputPosition="top"
-          lang="id"
+          mapping='title'
+          reactionsEnabled='1'
+          emitMetadata='0'
+          theme='cobalt'
+          inputPosition='top'
+          lang='id'
         />
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default Comments;
+export default Comments

@@ -17,7 +17,7 @@ const NotFoundPage: NextPage = () => {
         <h1 className={twclsx('text-center')}>404 | Not Found</h1>
         <p className={twclsx('text-center max-w-prose', 'my-4')}>
           Halaman yang kamu cari tidak ditemukan, jika menurutmu ini sebuah kesalahan, tolong hubungi kami melalui{' '}
-          <UnderlineLink href="https://aghea.vercel.app/security">email</UnderlineLink>.
+          <UnderlineLink href='https://aghea.vercel.app/security'>email</UnderlineLink>.
         </p>
         <UnderlineLink href='/'>Kembali Ke Beranda</UnderlineLink>
       </section>

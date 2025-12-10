@@ -1,19 +1,21 @@
 ---
 featured: true
-title: "Menautkan Domain Website ke Discord"
-published: "2025-01-08"
-summary: "Panduan tentang cara menautkan domain website ke Discord menggunakan direktori .well-known untuk Connections."
+title: 'Menautkan Domain Website ke Discord'
+published: '2025-01-08'
+summary: 'Panduan tentang cara menautkan domain website ke Discord menggunakan direktori .well-known untuk Connections.'
 author_name: 'Agcrismanto Budhi Praswastyka'
 author_image: '/favicon.ico'
-thumbnail: "/Connections-Thumb.png"
+thumbnail: '/Connections-Thumb.png'
 tags: ['Tutorial', 'Informasi', 'Discord']
 keywords: ['Tutorial', 'Informasi', 'Discord']
 ---
 
 ## Apa Itu Discord Connections?
+
 Discord punya fitur keren yang disebut **Connections**, yang memungkinkan kamu menghubungkan berbagai layanan dan akun ke Discord, seperti domain website, YouTube, PlayStation, GitHub, Twitch, Spotify, dan masih banyak lagi.
 
 ## Apa Itu .well-known?
+
 `.well-known` adalah direktori standar yang digunakan untuk menyediakan metadata di server web. Dalam konteks ini, Discord menggunakannya untuk memverifikasi bahwa domain yang dimasukkan benar-benar milik pengguna tersebut.
 
 ---
@@ -21,7 +23,7 @@ Discord punya fitur keren yang disebut **Connections**, yang memungkinkan kamu m
 ### Cara Menautkan Website ke Connections di Discord
 
 - Buka Menu **`Connections`** Discord dengan cara masuk ke akun Discord kamu.
-- Klik ikon *`gear`* di sebelah profil kamu (pojok kiri bawah pada Desktop, pojok kanan atas pada Mobile) untuk membuka **`User Settings`**.
+- Klik ikon _`gear`_ di sebelah profil kamu (pojok kiri bawah pada Desktop, pojok kanan atas pada Mobile) untuk membuka **`User Settings`**.
 - Di menu sebelah kiri, cari dan klik **`Connections`**.
 
 ![Preview](/youtube_integration_viewer.jpg)
@@ -33,8 +35,9 @@ Discord punya fitur keren yang disebut **Connections**, yang memungkinkan kamu m
 ---
 
 #### Tambahkan Layanan atau URL Website
-- Klik ikon layanan yang ingin kamu tautkan. Kalau kamu ingin menautkan domain websitemu, masukkan URL website, setelahnya akan muncul sebuah *`prompt`* verifikasi seperti berikut:
-  
+
+- Klik ikon layanan yang ingin kamu tautkan. Kalau kamu ingin menautkan domain websitemu, masukkan URL website, setelahnya akan muncul sebuah _`prompt`_ verifikasi seperti berikut:
+
 ![Preview](/Connections-Check.png)
 
 - Salin token verifikasi yang ada pada form `CONTENT`.
@@ -42,8 +45,9 @@ Discord punya fitur keren yang disebut **Connections**, yang memungkinkan kamu m
 ---
 
 #### Buat Folder .well-known
+
 - Buat folder baru bernama `.well-known` di dalam folder `public` (Atau `root` proyek).
-- Di dalam folder `.well-known`, buat file teks baru bernama `discord` tanpa ekstensi apapun, dan masukkan token verifikasi yang tadi sudah kamu salin ke dalam file tersebut, *`deploy`* website kamu, lalu tekan tombol **`Verify`**.
+- Di dalam folder `.well-known`, buat file teks baru bernama `discord` tanpa ekstensi apapun, dan masukkan token verifikasi yang tadi sudah kamu salin ke dalam file tersebut, _`deploy`_ website kamu, lalu tekan tombol **`Verify`**.
 
 ![Preview](/Connections-Dir.png)
 

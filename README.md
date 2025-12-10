@@ -18,6 +18,7 @@
 ## Example CodeBlock
 
 - Code
+
 ```
 <Pre
   codeBlocks={[
@@ -31,6 +32,7 @@ console.log(greeting);`,
 ```
 
 - Dropdown CodeBlock
+
 ```
 <Pre
   codeBlocks={[
@@ -55,6 +57,7 @@ console.log(greeting);`,
 ```
 
 - iFrame
+
 ```
 <Pre
   codeBlocks={[
@@ -71,11 +74,12 @@ console.log(greeting);`,
 />
 ```
 
-> You still can use ```triple-backsticks``` but it will be rendered without CopyButton (Its Pre components).
+> You still can use `triple-backsticks` but it will be rendered without CopyButton (Its Pre components).
 
 ---
 
 ## Sponsor
+
 - [Saweria](https://saweria.co/agcrisbp)
 - [Paypal](https://paypal.me/agcrisbp)
 

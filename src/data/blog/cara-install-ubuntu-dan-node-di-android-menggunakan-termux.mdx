@@ -31,213 +31,153 @@ keywords: ['Tutorial', 'Termux', 'Ubuntu', 'Ubuntu 23.10', 'Node', 'NodeJS', 'An
     {
       content: `yes | pkg up
 curl https://raw.githubusercontent.com/agcrisbp/LinuxAndroid/main/install.sh >> install.sh
-bash install.sh`,
-    },
+bash install.sh`
+    }
   ]}
 />
-
-- Password default untuk user charis: ch.
-
-- Jangan lupa untuk memperbarui modul-modul Ubuntu menggunakan perintah:
-
+- Password default untuk user charis: ch. - Jangan lupa untuk memperbarui modul-modul Ubuntu menggunakan perintah:
 <Pre
   codeBlocks={[
     {
-      content: `apt update && apt upgrade`,
-    },
+      content: `apt update && apt upgrade`
+    }
   ]}
 />
-
----
-
-## Menambah User Baru
-
+--- ## Menambah User Baru
 <Pre
   codeBlocks={[
     {
-      content: `proot-distro login ubuntu`,
-    },
+      content: `proot-distro login ubuntu`
+    }
   ]}
 />
-
 - Tambahkan user:
-
 <Pre
   codeBlocks={[
     {
-      content: `adduser Username`,
-    },
+      content: `adduser Username`
+    }
   ]}
 />
-
-> CATATAN! Kamu harus mengingat passwordmu untuk [mengakses Ubuntu](#akses-ubuntu) nantinya.
-
-- Izin akses root:
-
+> CATATAN! Kamu harus mengingat passwordmu untuk [mengakses Ubuntu](#akses-ubuntu) nantinya. - Izin akses root:
 <Pre
   codeBlocks={[
     {
-      content: `sudo visudo`,
-    },
+      content: `sudo visudo`
+    }
   ]}
 />
-
-- Tambahkan baris baru tepat di bawah `root    ALL=(ALL:ALL) ALL`:
-
+- Tambahkan baris baru tepat di bawah `root ALL=(ALL:ALL) ALL`:
 <Pre
   codeBlocks={[
     {
-      content: `Username    ALL=(ALL:ALL) ALL`,
-    },
+      content: `Username    ALL=(ALL:ALL) ALL`
+    }
   ]}
 />
-
 - Tambahkan akses login baru:
-
 <Pre
   codeBlocks={[
     {
       content: `echo "proot-distro login --user Username ubuntu" >> $PREFIX/bin/Username
 chmod +x $PREFIX/bin/Username
-rm $CHROOT/root/.bashrc`,
-    },
+rm $CHROOT/root/.bashrc`
+    }
   ]}
 />
-
-> Ubah semua `Username` dengan nama yang kamu inginkan. Hal ini untuk mempermudah login hanya dengan `Username` tanpa harus menulis `proot-distro login ubuntu`.
-
----
-
-## Mengubah Bahasa ke Indonesia
-
-- Unduh paket Bahasa Indonesia:
-
+> Ubah semua `Username` dengan nama yang kamu inginkan. Hal ini untuk mempermudah login hanya dengan `Username` tanpa harus
+menulis `proot-distro login ubuntu`. --- ## Mengubah Bahasa ke Indonesia - Unduh paket Bahasa Indonesia:
 <Pre
   codeBlocks={[
     {
-      content: `sudo apt-get install language-pack-id`,
-    },
+      content: `sudo apt-get install language-pack-id`
+    }
   ]}
 />
-
 - Ubah environment:
-
 <Pre
   codeBlocks={[
     {
-      content: `sudo nano /etc/environment`,
-    },
+      content: `sudo nano /etc/environment`
+    }
   ]}
 />
-
 - Ubah `LANG=en_EN.UTF-8` dengan kode berikut:
-
 <Pre
   codeBlocks={[
     {
       content: `LANG=id_ID.UTF-8
-LC_TIME=id_ID.UTF-8`,
-    },
+LC_TIME=id_ID.UTF-8`
+    }
   ]}
 />
-
-- Mulai ulang Termux.
-
----
-
-## Akses Ubuntu
-
-- Buka AVNC, atur seperti berikut:
-
+- Mulai ulang Termux. --- ## Akses Ubuntu - Buka AVNC, atur seperti berikut:
 <Pre
   codeBlocks={[
     {
       content: `Host: localhost
-Port: 1`,
-    },
+Port: 1`
+    }
   ]}
 />
-
-- Isi `Username` dan `Password` sesuai dengan yang sudah kamu buat.
-
----
-
-## Instal NVM (Node Version Manager)
-
-- Pertama, kamu perlu menginstal `curl` jika belum terinstal otomatis pada saat melakukan penginstalan Ubuntu.
-
+- Isi `Username` dan `Password` sesuai dengan yang sudah kamu buat. --- ## Instal NVM (Node Version Manager) - Pertama, kamu
+perlu menginstal `curl` jika belum terinstal otomatis pada saat melakukan penginstalan Ubuntu.
 <Pre
   codeBlocks={[
     {
-      content: `sudo apt install curl -y`,
-    },
+      content: `sudo apt install curl -y`
+    }
   ]}
 />
-
-- Lalu unduh NVM menggunakan curl. Ketika kamu menjalankan perintah khusus ini, curl akan mengunduh skrip instalasi NVM. Setelah itu, bash mengeksekusi skrip yang sama untuk menginstal NVM.
-
+- Lalu unduh NVM menggunakan curl. Ketika kamu menjalankan perintah khusus ini, curl akan mengunduh skrip instalasi NVM.
+Setelah itu, bash mengeksekusi skrip yang sama untuk menginstal NVM.
 <Pre
   codeBlocks={[
     {
-      content: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash`,
-    },
+      content: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash`
+    }
   ]}
 />
-
----
-
-## Aktivasi NVM
-
+--- ## Aktivasi NVM
 <Pre
   codeBlocks={[
     {
-      content: `source ~/.bashrc`,
-    },
+      content: `source ~/.bashrc`
+    }
   ]}
 />
-
----
-
-## Install Node
-
+--- ## Install Node
 <Pre
   codeBlocks={[
     {
-      content: `nvm install --lts`,
-    },
+      content: `nvm install --lts`
+    }
   ]}
 />
-
-- Node versi terbaru telah terinstal, atau gunakan perintah di bawah ini untuk memastikan versi Node yang baru saja kamu instal:
-
+- Node versi terbaru telah terinstal, atau gunakan perintah di bawah ini untuk memastikan versi Node yang baru saja kamu
+instal:
 <Pre
   codeBlocks={[
     {
-      content: `node -v`,
-    },
+      content: `node -v`
+    }
   ]}
 />
-
----
-
-## Ubah Node Default
-
-- Jika sudah yakin dengan versi dari Node yang kamu instal, kamu perlu mengatur versi default dari NVM agar dapat digunakan secara default kapan pun kamu membutuhkannya. Kamu dapat menggunakan perintah di bawah ini untuk melakukannya. Pastikan untuk mengubah versinya ke versi yang sama persis dengan versi yang telah kamu instal.
-
+--- ## Ubah Node Default - Jika sudah yakin dengan versi dari Node yang kamu instal, kamu perlu mengatur versi default dari
+NVM agar dapat digunakan secara default kapan pun kamu membutuhkannya. Kamu dapat menggunakan perintah di bawah ini untuk
+melakukannya. Pastikan untuk mengubah versinya ke versi yang sama persis dengan versi yang telah kamu instal.
 <Pre
   codeBlocks={[
     {
-      content: `nvm use --lts`,
-    },
+      content: `nvm use --lts`
+    }
   ]}
 />
-
 - Jika versi Node kamu adalah 24.1.2, maka gunakan perintah di bawah ini:
-
 <Pre
   codeBlocks={[
     {
-      content: `nvm alias default 24.1.2`,
-    },
+      content: `nvm alias default 24.1.2`
+    }
   ]}
 />

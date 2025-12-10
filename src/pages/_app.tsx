@@ -3,11 +3,11 @@ import '@/styles/tailwind.css'
 import Footer from '@/components/organism/Footer'
 import Header from '@/components/organism/Header'
 
+import { Analytics } from '@vercel/analytics/react'
 import { AnimatePresence, LazyMotion, Variants, domAnimation, m } from 'framer-motion'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import 'react-tippy/dist/tippy.css'
-import { Analytics } from '@vercel/analytics/react';
 
 const v: Variants = {
   hidden: {

@@ -12,7 +12,7 @@ import { Blog } from 'next-starter-blog'
 const meta = {
   title: 'Semua Tulisan',
   description: 'Selamat membaca.',
-  template: 'Tulisan Agcrismanto Budhi Praswastyka',
+  template: 'Tulisan Agcrismanto Budhi Praswastyka'
 }
 
 interface BlogPageProps {
@@ -44,7 +44,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      allPost: blogs.map((a) => ({ ...a.data, slug: a.slug }))
+      allPost: blogs
+        .map((a) => ({ ...a.data, slug: a.slug }))
         // sort descending by date
         .sort((b, a) =>
           new Date(a.published) > new Date(a.published) ? 1 : new Date(a.published) < new Date(b.published) ? -1 : 0

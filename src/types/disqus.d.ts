@@ -1,7 +1,7 @@
 declare global {
   interface Window {
-    DISQUS: any;
+    DISQUS: any
   }
 }
 
-export {};
+export {}

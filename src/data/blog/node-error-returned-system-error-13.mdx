@@ -1,13 +1,13 @@
 ---
 featured: true
-title: "Resolving NodeError [SystemError]: uv_interface_addresses returned Unknown system error 13"
+title: 'Resolving NodeError [SystemError]: uv_interface_addresses returned Unknown system error 13'
 summary: 'Fix the uv_interface_addresses error in Node.js by modifying get-network-host.js in Next.js.'
-published: "2025-03-18"
+published: '2025-03-18'
 author_name: 'Agcrismanto Budhi Praswastyka'
 author_image: '/favicon.ico'
-thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png"
-tags: ["Informasi", "Termux", "Android"]
-keywords: ["NodeJS"]
+thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png'
+tags: ['Informasi', 'Termux', 'Android']
+keywords: ['NodeJS']
 ---
 
 When working with Node.js, you might encounter an error message like:
@@ -31,8 +31,8 @@ To fix this issue in a Next.js project, modify `node_modules/next/dist/lib/get-n
 <Pre
   codeBlocks={[
     {
-        language: "javascript",
-        label: "node_modules/next/dist/lib/get-network-host.js",
+      language: 'javascript',
+      label: 'node_modules/next/dist/lib/get-network-host.js',
       content: `"use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -101,13 +101,11 @@ function getNetworkHost(family) {
     return hosts[0] ?? null;
 }
 
-//# sourceMappingURL=get-network-host.js.map`,
-    },
+//# sourceMappingURL=get-network-host.js.map`
+    }
   ]}
 />
-
-> This fix ensures that if network interfaces cannot be retrieved, the function will fail gracefully without breaking the app.
-> 
-> Since modifying node_modules is not a permanent solution, consider implementing a patching mechanism (e.g., using patch-package) or overriding the function at runtime.
-> 
-> By applying this fix, you should be able to resolve the `uv_interface_addresses` error and continue working with Next.js without issues.
+> This fix ensures that if network interfaces cannot be retrieved, the function will fail gracefully without breaking the
+app. > > Since modifying node_modules is not a permanent solution, consider implementing a patching mechanism (e.g., using
+patch-package) or overriding the function at runtime. > > By applying this fix, you should be able to resolve the `uv_interface_addresses`
+error and continue working with Next.js without issues.

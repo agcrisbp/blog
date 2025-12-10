@@ -1,21 +1,23 @@
+import { Blockquote, InlineCode, Pre } from '@/components/contents/'
 import CustomImage from '@/components/mollecules/CustomImage'
+import UnderlineLink from '@/components/mollecules/UnderlineLink'
 import Layout from '@/components/template/Layout'
+
 import { getBlog, getBlogBySlug } from '@/helpers'
 import { useMediaQuery, useMetaData } from '@/hooks'
 import { dateFormat, dateStringToISO } from '@/libs/dateFormat'
 import { twclsx } from '@/libs/twclsx'
 
+import Comments from './comments'
+
+import mdxPrism from 'mdx-prism'
+import { MDXComponents } from 'mdx/types'
 import { GetStaticPaths, GetStaticPathsResult, GetStaticProps, NextPage } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { MDXComponents } from 'mdx/types'
 import { serialize } from 'next-mdx-remote/serialize'
 import { Blog } from 'next-starter-blog'
 import 'prism-themes/themes/prism-night-owl.css'
 import { ParsedUrlQuery } from 'querystring'
-import { Pre, InlineCode, Blockquote } from '@/components/contents/'
-import UnderlineLink from '@/components/mollecules/UnderlineLink'
-import mdxPrism from 'mdx-prism'
-import Comments from './comments';
 
 interface URLSlug extends ParsedUrlQuery {
   slug: string
@@ -34,44 +36,46 @@ const BlogPost: NextPage<BlogPostProps> = ({ data, mdxSource }) => {
     a: UnderlineLink,
     blockquote: Blockquote,
     Pre,
-    code: InlineCode,
+    code: InlineCode
   }
 
   return (
-    <Layout {...metaData} as="main" title={data.title} description={data.summary}>
+    <Layout {...metaData} as='main' title={data.title} description={data.summary}>
       <article>
-        <h1 className="mb-8 md:text-5xl">{data.title}</h1>
-        <figure className="w-full pt-0">
+        <h1 className='mb-8 md:text-5xl'>{data.title}</h1>
+        <figure className='w-full pt-0'>
           <CustomImage
             src={data.thumbnail ?? '/phpmyadmin.png'}
             alt={data.title}
-            display="intrinsic"
+            display='intrinsic'
             width={768}
             height={isMediumScreen ? 376 : 468}
-            objectFit="cover"
-            className="rounded"
+            objectFit='cover'
+            className='rounded'
           />
         </figure>
-        <section className="border-b border-main-2 dark:border-main-3 py-10">
-          <div className="flex items-center gap-4">
+        <section className='border-b border-main-2 dark:border-main-3 py-10'>
+          <div className='flex items-center gap-4'>
             <CustomImage
-              display="intrinsic"
+              display='intrinsic'
               width={32}
               height={32}
               src={data.author_image}
               alt={data.author_name}
-              className="rounded-full"
+              className='rounded-full'
             />
-            <p className="text-sm md:text-base">
+            <p className='text-sm md:text-base'>
               <strong>
-                <a href={process.env.AUTHOR_URL ? `${process.env.AUTHOR_URL}` : undefined} target="_blank" rel="noreferrer">
+                <a
+                  href={process.env.AUTHOR_URL ? `${process.env.AUTHOR_URL}` : undefined}
+                  target='_blank'
+                  rel='noreferrer'
+                >
                   {data.author_name}
                 </a>
               </strong>
               <br />
-              <time dateTime={dateStringToISO(data.published)}>
-                {dateFormat(data.published)}
-              </time>
+              <time dateTime={dateStringToISO(data.published)}>{dateFormat(data.published)}</time>
             </p>
           </div>
         </section>
@@ -86,10 +90,10 @@ const BlogPost: NextPage<BlogPostProps> = ({ data, mdxSource }) => {
         </section>
         {process.env.NEXT_PUBLIC_GISCUS_REPO ? (
           <Comments
-            repo={process.env.NEXT_PUBLIC_GISCUS_REPO || ""}
-            repoId={process.env.NEXT_PUBLIC_GISCUS_REPO_ID || ""}
-            category={process.env.NEXT_PUBLIC_GISCUS_CATEGORY || ""}
-            categoryId={process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || ""}
+            repo={process.env.NEXT_PUBLIC_GISCUS_REPO || ''}
+            repoId={process.env.NEXT_PUBLIC_GISCUS_REPO_ID || ''}
+            category={process.env.NEXT_PUBLIC_GISCUS_CATEGORY || ''}
+            categoryId={process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || ''}
           />
         ) : null}
       </article>
@@ -104,7 +108,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     fallback: false,
-    paths,
+    paths
   }
 }
 
@@ -117,8 +121,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   return {
     props: {
       mdxSource,
-      data: { ...blog.data, slug },
-    },
+      data: { ...blog.data, slug }
+    }
   }
 }
 

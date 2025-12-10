@@ -11,6 +11,7 @@ keywords: ['Tutorial', 'Kali Linux', 'NetHunter', 'Linux', 'Node', 'Termux', 'An
 ---
 
 ## Unduh Termux
+
 - Buka halaman unduh <a href="https://aghea.site/termux" target="_blank">Termux</a> di F-Droid. Scroll ke bawah untuk mencari aplikasi Termux terbaru, atau <a href="https://aghea.site/termuxdl" target="_blank">klik di sini</a> untuk mengunduh Versi 0.118.0 (118) yang diperbarui pada 11 Januari 2022.
 
 > Termux sudah dapat diunduh di [Google Play Store](https://play.google.com/store/apps/details?id=com.termux) lagi, atau kalian bisa mengakses repositori Termux di <a href="https://github.com/termux/termux-app/releases" target="_blank">Github</a>.
@@ -32,121 +33,82 @@ keywords: ['Tutorial', 'Kali Linux', 'NetHunter', 'Linux', 'Node', 'Termux', 'An
 pkg install wget
 wget -O install-nethunter-termux https://offs.ec/2MceZWr
 chmod +x install-nethunter-termux
-./install-nethunter-termux`,
-    },
+./install-nethunter-termux`
+    }
   ]}
 />
-
----
-
-## Mengubah Bahasa ke Indonesia
-
-- Buka pengaturan bawaan NetHunter di Termux menggunakan:
-
+--- ## Mengubah Bahasa ke Indonesia - Buka pengaturan bawaan NetHunter di Termux menggunakan:
 <Pre
   codeBlocks={[
     {
-      content: `nano $PREFIX/bin/nh`,
-    },
+      content: `nano $PREFIX/bin/nh`
+    }
   ]}
 />
-
-- Ubah `LANG=C.UTF-8  \` dengan kode berikut:
-
+- Ubah `LANG=C.UTF-8 \` dengan kode berikut:
 <Pre
   codeBlocks={[
     {
       content: `LANG=id_ID.UTF-8 \\
-LC_TIME=id_ID.UTF-8 \\`,
-    },
+LC_TIME=id_ID.UTF-8 \\`
+    }
   ]}
 />
-
 - Lalu masuk ke NetHunter dengan perintah `nh` atau `nethunter` dan ubah `date` ke WIB menggunakan:
-
 <Pre
   codeBlocks={[
     {
-      content: `sudo ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime`,
-    },
+      content: `sudo ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime`
+    }
   ]}
 />
-
-> Password default `sudo` NetHunter adalah: `kali`.
-
-- Konfirmasi pilihan bahasa:
-
+> Password default `sudo` NetHunter adalah: `kali`. - Konfirmasi pilihan bahasa:
 <Pre
   codeBlocks={[
     {
-      content: `sudo dpkg-reconfigure locales`,
-    },
+      content: `sudo dpkg-reconfigure locales`
+    }
   ]}
 />
-
-- Cari `id_ID.UTF-8 UTF-8`, pilih menggunakan `Spasi`, lalu `Enter`.
-
----
-
-## Install GUI
-
+- Cari `id_ID.UTF-8 UTF-8`, pilih menggunakan `Spasi`, lalu `Enter`. --- ## Install GUI
 <Pre
   codeBlocks={[
     {
       content: `sudo apt update
-sudo apt install xfce4 xfce4-terminal xfce4-whiskermenu-plugin firefox-esr kali-themes dbus-x11 tigervnc-standalone-server`,
-    },
+sudo apt install xfce4 xfce4-terminal xfce4-whiskermenu-plugin firefox-esr kali-themes dbus-x11 tigervnc-standalone-server`
+    }
   ]}
 />
-
-> Perhatikan terminal Termux karena akan muncul beberapa prompt yang wajib dikonfirmasi!
-
----
-
-## Akses Kali Linux
-
-- Masukkan perintah `kex`, lalu buka AVNC, atur seperti berikut:
-
+> Perhatikan terminal Termux karena akan muncul beberapa prompt yang wajib dikonfirmasi! --- ## Akses Kali Linux - Masukkan
+perintah `kex`, lalu buka AVNC, atur seperti berikut:
 <Pre
   codeBlocks={[
     {
       content: `Host: localhost
-Port: 5901`,
-    },
+Port: 5901`
+    }
   ]}
 />
-
-- Isi `Password` sesuai dengan yang sudah kamu buat.
-
----
-
-## Memperbaiki Audio dan Mic
-- Unduh dan install terlebih dahulu [Termux:API](https://github.com/termux/termux-api/releases/) dan pastikan kamu sudah menginstal `pulseaudio` di dalam Termux maupun NetHunter, lalu masukkan perintah berikut di Termux:
-
+- Isi `Password` sesuai dengan yang sudah kamu buat. --- ## Memperbaiki Audio dan Mic - Unduh dan install terlebih dahulu
+[Termux:API](https://github.com/termux/termux-api/releases/) dan pastikan kamu sudah menginstal `pulseaudio` di dalam Termux
+maupun NetHunter, lalu masukkan perintah berikut di Termux:
 <Pre
   codeBlocks={[
     {
       content: `pulseaudio --start --exit-idle-time=-1
 pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
-pactl load-module module-sles-source`,
-    },
+pactl load-module module-sles-source`
+    }
   ]}
 />
-
 - Lalu masukkan perintah berikut di dalam NetHunter:
-
 <Pre
   codeBlocks={[
     {
-      content: `export PULSE_SERVER=127.0.0.1 && pulseaudio --start --disable-shm=1 --exit-idle-time=-1`,
-    },
+      content: `export PULSE_SERVER=127.0.0.1 && pulseaudio --start --disable-shm=1 --exit-idle-time=-1`
+    }
   ]}
 />
-
-> Kamu dapat memasukkan kedua perintah di atas ke dalam `.bashrc` ataupun `.zshrc`.
-
----
-
-> Untuk menginstal Node, silahkan baca [Instal NVM (Node Version Manager)](/posts/cara-install-ubuntu-dan-node-di-android-menggunakan-termux#instal-nvm-node-version-manager).
-
+> Kamu dapat memasukkan kedua perintah di atas ke dalam `.bashrc` ataupun `.zshrc`. --- > Untuk menginstal Node, silahkan
+baca [Instal NVM (Node Version Manager)](/posts/cara-install-ubuntu-dan-node-di-android-menggunakan-termux#instal-nvm-node-version-manager).
 ---

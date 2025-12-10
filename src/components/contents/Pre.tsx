@@ -117,7 +117,7 @@ const Pre: React.FunctionComponent<PreProps> = ({ codeBlocks }) => {
               )}
             </div>
           ) : (
-            <span className='text-white font-medium'>{currentBlock.label || 'Code Block'}</span>
+            <span className='text-white font-medium py-3 px-3 rounded-md'>{currentBlock.label || 'Code Block'}</span>
           )}
         </div>
       )}
